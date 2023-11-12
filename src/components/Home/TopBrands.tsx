@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
+import { createStyleSheet, useStyles } from "../../theme";
 
 const TopBrands = () => {
+  const { styles, theme } = useStyles(stylesheet);
   const topBrands = [
     {
       id: 1,
@@ -54,30 +56,69 @@ const TopBrands = () => {
   ];
 
   const renderItem = ({ item }: any) => (
-    <View>
+    <View style={styles.iconContainer}>
       <Image source={item.icon} />
-      <Text>{item.description}</Text>
+      <Text style={styles.description}>{item.description}</Text>
     </View>
   );
 
   return (
-    <View>
-      <View>
-        <Text>TopBrands</Text>
+    <View style={styles.container}>
+      <View style={styles.topBrandContainer}>
+        <Text style={styles.topBrandTitle}>Top brands</Text>
         <Pressable>
-          <Text>view all</Text>
+          <Text style={styles.topBrandSubtitle}>view all</Text>
         </Pressable>
       </View>
-      <FlatList
-        data={topBrands}
-        keyExtractor={(item: any) => item.id}
-        renderItem={renderItem}
-        horizontal
-      />
+      <View>
+        <FlatList
+          data={topBrands}
+          keyExtractor={(item: any) => item.id}
+          renderItem={renderItem}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 };
 
 export default TopBrands;
 
-const styles = StyleSheet.create({});
+const stylesheet = createStyleSheet((theme) => ({
+  container: {
+    marginTop: 24,
+  },
+  description: {
+    ...theme.typography.bodySmall.bold,
+    color: theme.colors.gray900,
+  },
+  topBrandContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginLeft: 16,
+    marginRight: 16,
+  },
+  topBrandTitle: {
+    ...theme.typography.bodyXLarge.bold,
+  },
+  topBrandSubtitle: {
+    ...theme.typography.bodyMedium.medium,
+    color: theme.colors.gray500,
+  },
+  iconContainer: {
+    marginTop: 16,
+    width: 98,
+    height: 104,
+    borderRadius: 16,
+    borderWidth: 2,
+    gap: 12,
+    marginLeft: 24,
+    marginRight: 24,
+    padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: theme.colors.gray200,
+    backgroundColor: theme.colors.gray200,
+  },
+}));

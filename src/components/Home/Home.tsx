@@ -25,7 +25,11 @@ const Home = () => {
         </View>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Search cars" />
+        <TextInput
+          style={styles.input}
+          placeholder="Search cars"
+          placeholderTextColor={theme.colors.gray400}
+        />
         <EvilIcons
           style={styles.iconContainer}
           name="search"
@@ -73,16 +77,20 @@ const stylesheet = createStyleSheet((theme) => ({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
+    width: "85%",
+    height: 66,
     borderRadius: 16,
     borderWidth: 1,
-    width: 350,
-    height: 53,
     padding: 16,
     marginHorizontal: 24,
     marginTop: 16,
+    backgroundColor: theme.colors.gray50,
+    borderColor: theme.colors.gray50,
   },
   input: {
     flex: 1,
+    paddingVertical: 4,
+    paddingHorizontal: 16,
   },
   iconContainer: {
     marginRight: 12,
