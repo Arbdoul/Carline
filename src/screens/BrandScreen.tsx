@@ -5,8 +5,10 @@ import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import Brands from "../components/Brands";
 import CustomButton from "../ui/CustomButton";
+import { useNavigation } from "@react-navigation/native";
 
 const BrandScreen = () => {
+  const navigation = useNavigation<any>();
   const { styles, theme } = useStyles(stylesheet);
   return (
     <ScrollView style={styles.container}>
@@ -27,7 +29,9 @@ const BrandScreen = () => {
 
         <Brands />
 
-        <CustomButton>Finish</CustomButton>
+        <CustomButton onPress={() => navigation.navigate("HomeScreen")}>
+          Finish
+        </CustomButton>
       </View>
     </ScrollView>
   );

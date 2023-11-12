@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { theme } from "../theme";
 
-const CustomButton = ({ children }: any) => {
+const CustomButton = ({ children, onPress }: any) => {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.finishButton}>
+      <Pressable onPress={onPress} style={styles.finishButton}>
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>

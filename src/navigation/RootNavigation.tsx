@@ -13,6 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import BrandScreen from "../screens/BrandScreen";
 //import { SmartHome } from "tabler-icons-react";
 
 const Stack = createNativeStackNavigator();
@@ -88,6 +89,11 @@ const RootNavigation = () => {
         animation: "none",
       }}
     >
+      <Stack.Screen
+        name="BrandScreen"
+        component={BrandScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="HomeScreen"
         component={TabNavigator}

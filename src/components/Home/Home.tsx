@@ -5,6 +5,7 @@ import { EvilIcons } from "@expo/vector-icons";
 import React from "react";
 import { createStyleSheet, useStyles } from "../../theme";
 import TopBrands from "./TopBrands";
+import CarRecomendations from "./CarRecomendations";
 
 const Home = () => {
   const { styles, theme } = useStyles(stylesheet);
@@ -38,6 +39,8 @@ const Home = () => {
         />
       </View>
       <TopBrands />
+
+      <CarRecomendations />
     </ScrollView>
   );
 };
