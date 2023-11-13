@@ -3,10 +3,16 @@ import React from "react";
 import { createStyleSheet, useStyles } from "../../theme";
 import TopBrands from "./TopBrands";
 import Header from "../reuseComponents/Header";
+import Cars from "../reuseComponents/Cars";
 
 const ShopByCarType = () => {
   const { styles, theme } = useStyles(stylesheet);
-  return <Header title="Shop By Car Type" subtitle="view all" />;
+  return (
+    <>
+      <Header title="Shop By Car Type" subtitle="view all" />
+      <Cars />
+    </>
+  );
 };
 
 export default ShopByCarType;

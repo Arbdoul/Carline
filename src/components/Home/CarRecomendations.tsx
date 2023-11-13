@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { createStyleSheet, useStyles } from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
+import Header from "../reuseComponents/Header";
 
 const CarRecomendations = () => {
   const carRecommendation = [
@@ -186,23 +187,20 @@ const CarRecomendations = () => {
     );
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.carRecomendationContainer}>
-        <Text style={styles.carRecomendationTitle}>Car Recomendations</Text>
-        <Pressable>
-          <Text style={styles.carRecomendationSubtitle}>view all</Text>
-        </Pressable>
-      </View>
+    <>
       <View>
-        <FlatList
-          data={carRecommendation}
-          keyExtractor={(item: any) => item.id.toString()}
-          renderItem={renderItem}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
+        <Header title="Car Remcommendation" subtitle="view all" />
+        <View>
+          <FlatList
+            data={carRecommendation}
+            keyExtractor={(item: any) => item.id.toString()}
+            renderItem={renderItem}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
