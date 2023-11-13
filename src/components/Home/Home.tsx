@@ -6,6 +6,7 @@ import React from "react";
 import { createStyleSheet, useStyles } from "../../theme";
 import TopBrands from "./TopBrands";
 import CarRecomendations from "./CarRecomendations";
+import ShopByCarType from "./ShopByCarType";
 
 const Home = () => {
   const { styles, theme } = useStyles(stylesheet);
@@ -39,8 +40,8 @@ const Home = () => {
         />
       </View>
       <TopBrands />
-
       <CarRecomendations />
+      <ShopByCarType />
     </ScrollView>
   );
 };

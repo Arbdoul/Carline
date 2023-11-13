@@ -9,10 +9,11 @@ import {
 import React from "react";
 import { ImageSourcePropType } from "react-native";
 import { createStyleSheet, useStyles } from "../../theme";
+import Header from "../reuseComponents/Header";
 
-const TopBrands = () => {
+const TopBrands = ({ title, subtitle }: any) => {
   const { styles, theme } = useStyles(stylesheet);
-  const topBrands = [
+  const items = [
     {
       id: 1,
       icon: require("../../../assets/images/tesla.png") as ImageSourcePropType,
@@ -63,16 +64,11 @@ const TopBrands = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.topBrandContainer}>
-        <Text style={styles.topBrandTitle}>Top brands</Text>
-        <Pressable>
-          <Text style={styles.topBrandSubtitle}>view all</Text>
-        </Pressable>
-      </View>
+    <View>
+      <Header title="Top brands" subtitle="view all" />
       <View>
         <FlatList
-          data={topBrands}
+          data={items}
           keyExtractor={(item: any) => item.id}
           renderItem={renderItem}
           horizontal

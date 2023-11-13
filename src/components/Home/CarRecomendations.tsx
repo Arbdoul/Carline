@@ -5,43 +5,161 @@ import {
   Pressable,
   Image,
   ImageSourcePropType,
+  FlatList,
 } from "react-native";
 import React from "react";
 import { createStyleSheet, useStyles } from "../../theme";
 import { FontAwesome } from "@expo/vector-icons";
 
 const CarRecomendations = () => {
-  const carRecommendation = [{}];
+  const carRecommendation = [
+    {
+      id: 1 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 2 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 3 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 4 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 5 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 6 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 7 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 8 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+    {
+      id: 9 as number,
+      carIcon:
+        require("../../../assets/images/audisvg.jpg") as ImageSourcePropType,
+      favoriteIcon:
+        require("../../../assets/images/heart.png") as ImageSourcePropType,
+      carImage:
+        require("../../../assets/images/audiImage.png") as ImageSourcePropType,
+      carTitel: "Audi A8 Quattro" as string,
+      carRating: "4.5" as string,
+      carDescriptionIcon:
+        require("../../../assets/images/group.png") as ImageSourcePropType,
+      carDescription: "Automatic" as string,
+      carPrice: "$123,378" as string,
+    },
+  ];
   const { styles, theme } = useStyles(stylesheet);
-  return (
-    <View style={styles.container}>
-      <View style={styles.carRecomendationContainer}>
-        <Text style={styles.carRecomendationTitle}>Car Recomendations</Text>
-        <Pressable>
-          <Text style={styles.carRecomendationSubtitle}>view all</Text>
-        </Pressable>
-      </View>
+
+  const renderItem = ({ item }: any) => {
+    return (
       <View style={styles.imageContainer}>
         <View>
-          <Image
-            style={styles.image}
-            source={
-              require("../../../assets/images/audiImage.png") as ImageSourcePropType
-            }
-          />
+          <Image style={styles.image} source={item.carImage} />
         </View>
         <View style={styles.overlayContainer}>
-          <Image
-            source={
-              require("../../../assets/images/audisvg.jpg") as ImageSourcePropType
-            }
-          />
-          <Image
-            style={styles.heartIcon}
-            source={
-              require("../../../assets/images/heart.png") as ImageSourcePropType
-            }
-          />
+          <Image source={item.carIcon} />
+          <Image style={styles.heartIcon} source={item.favoriteIcon} />
         </View>
         <View style={styles.description}>
           <View style={styles.titleContiner}>
@@ -64,6 +182,25 @@ const CarRecomendations = () => {
             <Text>$123,378</Text>
           </View>
         </View>
+      </View>
+    );
+  };
+  return (
+    <View style={styles.container}>
+      <View style={styles.carRecomendationContainer}>
+        <Text style={styles.carRecomendationTitle}>Car Recomendations</Text>
+        <Pressable>
+          <Text style={styles.carRecomendationSubtitle}>view all</Text>
+        </Pressable>
+      </View>
+      <View>
+        <FlatList
+          data={carRecommendation}
+          keyExtractor={(item: any) => item.id.toString()}
+          renderItem={renderItem}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
       </View>
     </View>
   );
