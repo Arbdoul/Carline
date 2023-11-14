@@ -6,12 +6,13 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { createStyleSheet, theme, useStyles } from "../theme";
 import { ImageSourcePropType } from "react-native";
 
 const Brands = () => {
   const { styles, theme } = useStyles(stylesheet);
+  const [selectedBrand, setSelectedBrand] = useState<number | null>(null);
   const brands = [
     {
       id: 1,
@@ -57,17 +58,34 @@ const Brands = () => {
   const half = Math.ceil(brands.length / 2);
   const brandColumns = [brands.slice(0, half), brands.slice(half)];
 
+  const handlePressed = (brandId: number) => {
+    setSelectedBrand(brandId);
+  };
+
   return (
     <View style={styles.brandContainer}>
       {brandColumns.map((column, index) => (
-        <Pressable key={index} style={styles.column}>
-          {column.map((item) => (
-            <View key={item.id} style={styles.brandItem}>
-              <Image source={item.icon} />
-              <Text>{item.description}</Text>
-            </View>
-          ))}
-        </Pressable>
+        <View style={styles.column}>
+          <Pressable key={index}>
+            {column.map((item) => (
+              <View
+                style={[
+                  styles.brandItem,
+                  selectedBrand === item.id && styles.selectedBrand,
+                ]}
+              >
+                <Pressable
+                  onPress={() => handlePressed(item.id)}
+                  key={item.id}
+                  style={({ pressed }) => [pressed && styles.pressed]}
+                >
+                  <Image source={item.icon} />
+                  <Text>{item.description}</Text>
+                </Pressable>
+              </View>
+            ))}
+          </Pressable>
+        </View>
       ))}
     </View>
   );
@@ -90,11 +108,18 @@ const stylesheet = createStyleSheet((theme) => ({
     height: 104,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: theme.colors.primary,
+    // borderColor: theme.colors.primary,
     padding: 16,
     marginBottom: 10,
     marginHorizontal: 24,
     marginVertical: 16,
     gap: 12,
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+  selectedBrand: {
+    borderColor: theme.colors.primary,
+    borderWidth: 1,
   },
 }));
