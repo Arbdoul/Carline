@@ -2,17 +2,18 @@ import { useStyles, createStyleSheet } from "../theme";
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 import * as Font from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Brands from "../components/Brands";
 import CustomButton from "../ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const BrandScreen = () => {
   const navigation = useNavigation<any>();
   const { styles, theme } = useStyles(stylesheet);
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.textContainer}>
+    <SafeAreaView style={styles.safeAreacontainer}>
+      <View style={{ flex: 1, backgroundColor: "white" }}>
         <View style={styles.headerContainer}>
           <View>
             <AntDesign name="arrowleft" size={24} color="black" />
@@ -21,50 +22,75 @@ const BrandScreen = () => {
             <Text style={styles.pressedText}>Skip</Text>
           </Pressable>
         </View>
-
-        <Text style={styles.title}>Which brand of car do you prefer?</Text>
-        <Text style={styles.description}>
-          Select all that you are intrested in
-        </Text>
-
-        <Brands />
-
-        <CustomButton onPress={() => navigation.navigate("HomeScreen")}>
-          Finish
-        </CustomButton>
+        <ScrollView style={styles.scrollViewContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Which brand of car do you prefer?</Text>
+            <Text style={styles.description}>
+              Select all that you are intrested in
+            </Text>
+          </View>
+          <View style={styles.brandContainer}>
+            <Brands />
+          </View>
+        </ScrollView>
+        <View style={styles.buttonContainer}>
+          <CustomButton onPress={() => navigation.navigate("HomeScreen")}>
+            Finish
+          </CustomButton>
+        </View>
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default BrandScreen;
 
 const stylesheet = createStyleSheet((theme) => ({
-  container: {
-    // backgroundColor: theme.colors.blue,
+  safeAreacontainer: {
+    flex: 1,
   },
   textContainer: {
-    margin: 80,
-    marginHorizontal: 10,
+    // margin: 80,
+    //  marginHorizontal: 10,
   },
   title: {
     ...theme.typography.h4,
   },
   description: {
-    fontWeight: "500",
-    fontSize: theme.typography.bodyLarge.medium.fontSize,
-    letterSpacing: theme.typography.bodyLarge.medium.letterSpacing,
-    lineHeight: 26.4,
-    color: theme.colors.secondary200,
+    ...theme.typography.bodyLarge.medium,
+    color: theme.colors.gray500,
   },
   headerContainer: {
+    marginTop: 29,
+    paddingVertical: 20,
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 24,
+  },
+
+  titleContainer: {
+    gap: 8,
+    marginTop: 16,
+    paddingHorizontal: 24,
   },
   pressedText: {
     fontWeight: "700",
     fontSize: theme.typography.bodyLarge.bold.fontSize,
     lineHeight: 26.4,
     color: theme.colors.primary,
+  },
+  scrollViewContainer: {
+    flex: 1,
+  },
+  brandContainer: {
+    marginTop: 32,
+    marginBottom: 56,
+    paddingHorizontal: 8,
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 16,
+    left: 24,
+    right: 24,
   },
 }));

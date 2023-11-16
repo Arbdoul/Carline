@@ -5,12 +5,15 @@ import {
   FlatList,
   Image,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { createStyleSheet, theme, useStyles } from "../theme";
 import { ImageSourcePropType } from "react-native";
+import { FlatGrid, SimpleGrid } from "react-native-super-grid";
 
 const Brands = () => {
+  const { width } = useWindowDimensions();
   const { styles, theme } = useStyles(stylesheet);
   const [selectedBrand, setSelectedBrand] = useState<number | null>(null);
   const brands = [
@@ -54,6 +57,16 @@ const Brands = () => {
       icon: require("../../assets/images/audi.png") as ImageSourcePropType,
       description: "Audi",
     },
+    {
+      id: 9,
+      icon: require("../../assets/images/ferari.png") as ImageSourcePropType,
+      description: "Ferari",
+    },
+    {
+      id: 10,
+      icon: require("../../assets/images/audi.png") as ImageSourcePropType,
+      description: "Audi",
+    },
   ];
   const half = Math.ceil(brands.length / 2);
   const brandColumns = [brands.slice(0, half), brands.slice(half)];
@@ -62,9 +75,46 @@ const Brands = () => {
     setSelectedBrand(brandId);
   };
 
+  // <View style={styles.brandContainer}>
   return (
-    <View style={styles.brandContainer}>
-      {brandColumns.map((column, index) => (
+    <SimpleGrid
+      listKey={"brands"}
+      data={brands}
+      spacing={16}
+      renderItem={({ item }) => (
+        <View
+          style={{
+            borderColor: theme.colors.gray300,
+            borderWidth: 1,
+            borderRadius: 16,
+            alignItems: "center",
+            paddingVertical: 16,
+            gap: 12,
+          }}
+        >
+          <Image source={item.icon} />
+          <Text>{item.description}</Text>
+        </View>
+        // <View
+        //   style={[
+        //     styles.brandItem,
+        //     selectedBrand === item.id && styles.selectedBrand,
+        //   ]}
+        // >
+        //   <Pressable
+        //     onPress={() => handlePressed(item.id)}
+        //     key={item.id}
+        //     style={({ pressed }) => [pressed && styles.pressed]}
+        //   >
+        //     <Image source={item.icon} />
+        //     <Text>{item.description}</Text>
+        //   </Pressable>
+        // </View>
+      )}
+    />
+  );
+  {
+    /* {brandColumns.map((column, index) => (
         <View style={styles.column}>
           <Pressable key={index}>
             {column.map((item) => (
@@ -86,17 +136,16 @@ const Brands = () => {
             ))}
           </Pressable>
         </View>
-      ))}
-    </View>
-  );
+      ))} */
+  }
 };
 
 export default Brands;
 
 const stylesheet = createStyleSheet((theme) => ({
   brandContainer: {
-    flex: 1,
-    flexDirection: "row",
+    // flex: 1,
+    //   flexDirection: "row",
   },
   column: {
     width: "50%",

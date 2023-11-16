@@ -4,11 +4,14 @@ import { UnistylesTheme } from "react-native-unistyles";
 import { theme } from "./src/theme";
 import HomeScreen from "./src/screens/BrandScreen";
 import { RootNavigator } from "./src/navigation/RootNavigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <UnistylesTheme theme={theme}>
-      <RootNavigator />
+      <SafeAreaProvider>
+        <RootNavigator />
+      </SafeAreaProvider>
     </UnistylesTheme>
   );
 }
