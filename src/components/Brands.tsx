@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { createStyleSheet, theme, useStyles } from "../theme";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { ImageSourcePropType } from "react-native";
 import { FlatGrid, SimpleGrid } from "react-native-super-grid";
 
@@ -75,7 +75,6 @@ const Brands = () => {
     setSelectedBrand(brandId);
   };
 
-  // <View style={styles.brandContainer}>
   return (
     <SimpleGrid
       listKey={"brands"}
@@ -95,49 +94,9 @@ const Brands = () => {
           <Image source={item.icon} />
           <Text>{item.description}</Text>
         </View>
-        // <View
-        //   style={[
-        //     styles.brandItem,
-        //     selectedBrand === item.id && styles.selectedBrand,
-        //   ]}
-        // >
-        //   <Pressable
-        //     onPress={() => handlePressed(item.id)}
-        //     key={item.id}
-        //     style={({ pressed }) => [pressed && styles.pressed]}
-        //   >
-        //     <Image source={item.icon} />
-        //     <Text>{item.description}</Text>
-        //   </Pressable>
-        // </View>
       )}
     />
   );
-  {
-    /* {brandColumns.map((column, index) => (
-        <View style={styles.column}>
-          <Pressable key={index}>
-            {column.map((item) => (
-              <View
-                style={[
-                  styles.brandItem,
-                  selectedBrand === item.id && styles.selectedBrand,
-                ]}
-              >
-                <Pressable
-                  onPress={() => handlePressed(item.id)}
-                  key={item.id}
-                  style={({ pressed }) => [pressed && styles.pressed]}
-                >
-                  <Image source={item.icon} />
-                  <Text>{item.description}</Text>
-                </Pressable>
-              </View>
-            ))}
-          </Pressable>
-        </View>
-      ))} */
-  }
 };
 
 export default Brands;

@@ -5,36 +5,37 @@ import {
   FlatList,
   Image,
   ImageSourcePropType,
+  SafeAreaView,
 } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "../../theme";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-const Cars = () => {
+const Cars = ({ onPress }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const items = [
     {
       id: 1,
-      icon: require("../../../assets/images/tesla.png") as ImageSourcePropType,
-      description: "Tesla",
+      icon: require("../../../assets/images/toyotaa.png") as ImageSourcePropType,
+      description: "Totota",
     },
     {
       id: 2,
-      icon: require("../../../assets/images/lamboghini.png") as ImageSourcePropType,
-      description: "Lambogini",
+      icon: require("../../../assets/images/bmww.png") as ImageSourcePropType,
+      description: "BMW",
     },
     {
       id: 3,
-      icon: require("../../../assets/images/landover.png") as ImageSourcePropType,
-      description: "Land rover",
+      icon: require("../../../assets/images/Ferrarii.png") as ImageSourcePropType,
+      description: "Ferrari",
     },
     {
       id: 4,
-      icon: require("../../../assets/images/bmw.png") as ImageSourcePropType,
-      description: "Bmw",
+      icon: require("../../../assets/images/landrover.png") as ImageSourcePropType,
+      description: "Land over",
     },
     {
       id: 5,
-      icon: require("../../../assets/images/toyota.png") as ImageSourcePropType,
+      icon: require("../../../assets/images/audii.png") as ImageSourcePropType,
       description: "Toyota",
     },
     {
@@ -55,8 +56,10 @@ const Cars = () => {
   ];
 
   const renderItem = ({ item }: any) => (
-    <View style={styles.iconContainer}>
-      <Image source={item.icon} />
+    <View style={styles.container}>
+      <View style={styles.iconContainer}>
+        <Image source={item.icon} />
+      </View>
       <Text style={styles.description}>{item.description}</Text>
     </View>
   );
@@ -76,12 +79,12 @@ const Cars = () => {
 export default Cars;
 
 const stylesheet = createStyleSheet((theme) => ({
-  iconContainer: {
+  container: {
     marginTop: 16,
     width: 98,
     height: 104,
     borderRadius: 16,
-    borderWidth: 2,
+    borderWidth: 1,
     gap: 12,
     marginLeft: 24,
     marginRight: 24,
@@ -89,10 +92,23 @@ const stylesheet = createStyleSheet((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     borderColor: theme.colors.gray200,
-    backgroundColor: theme.colors.gray200,
+    backgroundColor: theme.colors.white,
   },
   description: {
     ...theme.typography.bodySmall.bold,
     color: theme.colors.gray900,
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: theme.colors.gray900,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  icon: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));

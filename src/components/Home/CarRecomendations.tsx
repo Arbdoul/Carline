@@ -7,10 +7,11 @@ import {
   ImageSourcePropType,
   FlatList,
 } from "react-native";
-import React from "react";
-import { createStyleSheet, useStyles } from "../../theme";
+import React, { useState } from "react";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { FontAwesome } from "@expo/vector-icons";
 import Header from "../reuseComponents/Header";
+import { useNavigation } from "@react-navigation/native";
 
 const CarRecomendations = () => {
   const carRecommendation = [
@@ -151,6 +152,13 @@ const CarRecomendations = () => {
     },
   ];
   const { styles, theme } = useStyles(stylesheet);
+  const [verticalList, setVerticalList] = useState(false);
+  const navigation = useNavigation<any>();
+
+  const handlePress = () => {
+    // setVerticalList(!verticalList);
+    navigation.navigate("AllCarRecommendation");
+  };
 
   const renderItem = ({ item }: any) => {
     return (
@@ -180,7 +188,7 @@ const CarRecomendations = () => {
               />
               Automatic
             </Text>
-            <Text>$123,378</Text>
+            <Text style={styles.amount}>$123,378.00</Text>
           </View>
         </View>
       </View>
@@ -189,15 +197,67 @@ const CarRecomendations = () => {
   return (
     <>
       <View>
-        <Header title="Car Remcommendation" subtitle="view all" />
+        <Header
+          title="Car Remcommendation"
+          subtitle="view all"
+          onPress={handlePress}
+        />
         <View>
-          <FlatList
-            data={carRecommendation}
-            keyExtractor={(item: any) => item.id.toString()}
-            renderItem={renderItem}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
+          {verticalList ? (
+            <View>
+              {carRecommendation.map((item, index) => (
+                <View key={index}>
+                  <View style={styles.imageContainer}>
+                    <View>
+                      <Image style={styles.image} source={item.carImage} />
+                    </View>
+                    <View style={styles.overlayContainer}>
+                      <Image source={item.carIcon} />
+                      <Image
+                        style={styles.heartIcon}
+                        source={item.favoriteIcon}
+                      />
+                    </View>
+                    <View style={styles.description}>
+                      <View style={styles.titleContiner}>
+                        <Text style={styles.descriptionTitle}>
+                          Audi A8 Quattro
+                        </Text>
+                        <View style={styles.iconContainer}>
+                          <FontAwesome
+                            name="star"
+                            size={24}
+                            color={theme.colors.warning}
+                          />
+                          <Text>4.5</Text>
+                        </View>
+                      </View>
+
+                      <View style={styles.detailsContainer}>
+                        <Text style={styles.detailTitle}>
+                          <Image
+                            source={
+                              require("../../../assets/images/group.png") as ImageSourcePropType
+                            }
+                          />
+                          Automatic
+                        </Text>
+                        <Text style={styles.amount}>$123,378.00</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              ))}
+            </View>
+          ) : (
+            <FlatList
+              data={carRecommendation}
+              keyExtractor={(item: any) => item.id.toString()}
+              renderItem={renderItem}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+          )}
         </View>
       </View>
     </>
@@ -213,8 +273,8 @@ const stylesheet = createStyleSheet((theme) => ({
   carRecomendationContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginLeft: 16,
-    marginRight: 16,
+    marginLeft: 24,
+    marginRight: 24,
     margin: 10,
   },
   carRecomendationTitle: {
@@ -265,6 +325,7 @@ const stylesheet = createStyleSheet((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     marginTop: 50,
+    gap: 9,
   },
   titleContiner: {
     flexDirection: "row",
@@ -281,9 +342,14 @@ const stylesheet = createStyleSheet((theme) => ({
   detailsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 18,
   },
   detailTitle: {
     ...theme.typography.bodySmall.medium,
     color: theme.colors.gray500,
+  },
+  amount: {
+    ...theme.typography.bodyMedium.bold,
+    color: theme.colors.primary,
   },
 }));

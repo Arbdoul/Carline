@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "../../theme";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-const Header = ({ title, subtitle }: any) => {
+const Header = ({ title, subtitle, onPress }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   return (
     <View style={styles.container}>
       <View style={styles.topBrandContainer}>
         <Text style={styles.topBrandTitle}>{title}</Text>
-        <Pressable>
+        <Pressable onPress={onPress}>
           <Text style={styles.topBrandSubtitle}>{subtitle}</Text>
         </Pressable>
       </View>
@@ -21,6 +21,8 @@ export default Header;
 const stylesheet = createStyleSheet((theme) => ({
   container: {
     marginTop: 24,
+    marginLeft: 8,
+    marginRight: 8,
   },
   topBrandContainer: {
     flexDirection: "row",

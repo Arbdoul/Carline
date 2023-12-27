@@ -5,10 +5,11 @@ import {
   FlatList,
   Pressable,
   Image,
+  SafeAreaView,
 } from "react-native";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
-import { createStyleSheet, useStyles } from "../../theme";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 import Header from "../reuseComponents/Header";
 import Cars from "../reuseComponents/Cars";
 
@@ -16,10 +17,10 @@ const TopBrands = () => {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <View>
+    <SafeAreaView>
       <Header title="Top brands" subtitle="view all" />
       <Cars />
-    </View>
+    </SafeAreaView>
   );
 };
 

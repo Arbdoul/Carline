@@ -1,4 +1,4 @@
-import { useStyles, createStyleSheet } from "../theme";
+import { useStyles, createStyleSheet } from "react-native-unistyles";
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 import * as Font from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
@@ -13,7 +13,7 @@ const BrandScreen = () => {
   const { styles, theme } = useStyles(stylesheet);
   return (
     <SafeAreaView style={styles.safeAreacontainer}>
-      <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={styles.container}>
         <View style={styles.headerContainer}>
           <View>
             <AntDesign name="arrowleft" size={24} color="black" />
@@ -49,9 +49,9 @@ const stylesheet = createStyleSheet((theme) => ({
   safeAreacontainer: {
     flex: 1,
   },
-  textContainer: {
-    // margin: 80,
-    //  marginHorizontal: 10,
+  container: {
+    flex: 1,
+    backgroundColor: "white",
   },
   title: {
     ...theme.typography.h4,
