@@ -27,6 +27,7 @@ export const useSelectedTheme = () => {
 
   const setSelectedTheme = React.useCallback(
     (t: ColorSchemeType) => {
+      console.log("select theme");
       switch (t) {
         case "light": {
           setIsAdaptiveTheme(false);
@@ -55,9 +56,10 @@ export const useSelectedTheme = () => {
 };
 // to be used in the root file to load the selected theme from MMKV
 export const useLoadSelectedTheme = () => {
-  const theme = getItem<keyof UnistylesThemes>(SELECTED_THEME);
+  const theme = storage.getString(SELECTED_THEME);
   const isAdaptiveTheme = storage.getBoolean(IS_ADAPTIVE_THEME);
-  useInitialTheme(theme ?? "light");
+  //console.log(isAdaptiveTheme);
+  useInitialTheme((theme as keyof UnistylesThemes) ?? "light");
   UnistylesRuntime.setAdaptiveThemes(isAdaptiveTheme ?? true);
   // if (theme !== undefined) {
   console.log("theme", theme);

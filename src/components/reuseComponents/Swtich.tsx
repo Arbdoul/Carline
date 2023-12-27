@@ -41,7 +41,7 @@ const Swtich = ({
         <Text
           style={{
             ...theme.typography.bodyMedium.bold,
-            color: theme.colors.gray900,
+            //   color: theme.colors.gray900,
           }}
         >
           {text}

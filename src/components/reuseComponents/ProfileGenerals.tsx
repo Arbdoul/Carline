@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import { useStyles } from "../../theme";
+import { useStyles } from "react-native-unistyles";
 import { IconReceiptTax, IconChevronRight } from "tabler-icons-react-native";
 
 const ProfileGenerals = ({
@@ -39,7 +39,7 @@ const ProfileGenerals = ({
         <Text
           style={{
             ...theme.typography.bodyMedium.bold,
-            color: theme.colors.gray900,
+            //   color: theme.colors.gray900,
           }}
         >
           {text}

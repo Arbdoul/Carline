@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { forwardRef, useMemo, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { IconEyeCancel, IconX } from "tabler-icons-react-native";
-import { useStyles } from "../../theme";
+import { useStyles } from "react-native-unistyles";
 import { Ionicons } from "@expo/vector-icons";
 
 export type Ref = BottomSheetModal;

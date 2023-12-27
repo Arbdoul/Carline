@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import ProfileGenerals from "../reuseComponents/ProfileGenerals";
 import {
   IconAlertCircle,
@@ -13,16 +17,31 @@ import {
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import Swtich from "../reuseComponents/Swtich";
 import { useNavigation } from "@react-navigation/native";
+import { SelectTheme } from "./components/select-theme";
+import { Screen } from "../screen";
+import { isDarkMode } from "../../core";
 
 const Settings = () => {
   const { styles, theme } = useStyles(stylesheet);
   const navigation = useNavigation<any>();
+  console.log("theme color ", theme.colors.background);
 
   const handleLinkAccount = () => {
     navigation.navigate("LinkAccount");
   };
+  console.log("isDArk mode ", UnistylesRuntime.themeName === "dark");
   return (
-    <ScrollView style={styles.rootContainer}>
+    <Screen
+      style={styles.rootContainer}
+      preset="scroll"
+      backgroundColor={theme.colors.background}
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+
+        barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+      }}
+      //statusBarStyle="dark"
+    >
       <View style={styles.header}>
         <Text style={styles.headerText}>Account Settings</Text>
       </View>
@@ -75,12 +94,13 @@ const Settings = () => {
           text="Push notification"
           backgroundColor={theme.colors.gray50}
         />
+        <SelectTheme />
 
-        <Swtich
+        {/* <Swtich
           icon={<IconMoon color={theme.colors.gray400} size={24} />}
           text="Dark mode"
           backgroundColor={theme.colors.gray50}
-        />
+        /> */}
       </View>
       <View style={styles.header}>
         <Text style={styles.headerText}>Support</Text>
@@ -108,7 +128,7 @@ const Settings = () => {
           backgroundColor={theme.colors.gray50}
         />
       </View>
-    </ScrollView>
+    </Screen>
   );
 };
 
@@ -117,7 +137,6 @@ export default Settings;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
   },
   header: {
     marginTop: 24,

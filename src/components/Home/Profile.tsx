@@ -8,7 +8,11 @@ import {
   Image,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   IconSettings,
   IconArrowNarrowLeft,
@@ -22,6 +26,7 @@ import {
 } from "tabler-icons-react-native";
 import ProfileGenerals from "../reuseComponents/ProfileGenerals";
 import { useNavigation } from "@react-navigation/native";
+import { Screen } from "../screen";
 
 interface CarItem {
   image: ImageSourcePropType;
@@ -72,7 +77,15 @@ const Profile = ({ navigation }: any) => {
   }, []);
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: theme.colors.white }}>
+      <Screen
+        style={{ flex: 1 }}
+        preset="scroll"
+        backgroundColor={theme.colors.background}
+        statusBarProps={{
+          backgroundColor: theme.colors.primary,
+          barStyle: "light-content",
+        }}
+      >
         <View
           style={{
             flex: 1,
@@ -160,7 +173,7 @@ const Profile = ({ navigation }: any) => {
             backgroundColor={theme.colors.gray50}
           />
         </View>
-      </ScrollView>
+      </Screen>
     </>
   );
 };

@@ -3,7 +3,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { UnistylesTheme } from "react-native-unistyles";
-import { theme } from "./src/theme";
 import HomeScreen from "./src/screens/BrandScreen";
 import { RootNavigator } from "./src/navigation/RootNavigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
