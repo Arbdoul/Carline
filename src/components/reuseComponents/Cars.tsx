@@ -8,7 +8,11 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 
 const Cars = ({ onPress }: any) => {
   const { styles, theme } = useStyles(stylesheet);
@@ -28,39 +32,41 @@ const Cars = ({ onPress }: any) => {
       icon: require("../../../assets/images/Ferrarii.png") as ImageSourcePropType,
       description: "Ferrari",
     },
-    {
-      id: 4,
-      icon: require("../../../assets/images/landrover.png") as ImageSourcePropType,
-      description: "Land over",
-    },
-    {
-      id: 5,
-      icon: require("../../../assets/images/audii.png") as ImageSourcePropType,
-      description: "Toyota",
-    },
-    {
-      id: 6,
-      icon: require("../../../assets/images/ford.png") as ImageSourcePropType,
-      description: "Ford",
-    },
-    {
-      id: 7,
-      icon: require("../../../assets/images/ferari.png") as ImageSourcePropType,
-      description: "Ferari",
-    },
-    {
-      id: 8,
-      icon: require("../../../assets/images/audi.png") as ImageSourcePropType,
-      description: "Audi",
-    },
+    // {
+    //   id: 4,
+    //   icon: require("../../../assets/images/landrover.png") as ImageSourcePropType,
+    //   description: "Land over",
+    // },
+    // {
+    //   id: 5,
+    //   icon: require("../../../assets/images/audii.png") as ImageSourcePropType,
+    //   description: "Toyota",
+    // },
+    // {
+    //   id: 6,
+    //   icon: require("../../../assets/images/ford.png") as ImageSourcePropType,
+    //   description: "Ford",
+    // },
+    // {
+    //   id: 7,
+    //   icon: require("../../../assets/images/ferari.png") as ImageSourcePropType,
+    //   description: "Ferari",
+    // },
+    // {
+    //   id: 8,
+    //   icon: require("../../../assets/images/audi.png") as ImageSourcePropType,
+    //   description: "Audi",
+    // },
   ];
 
   const renderItem = ({ item }: any) => (
     <View style={styles.container}>
-      <View style={styles.iconContainer}>
-        <Image source={item.icon} />
+      <View>
+        <View style={styles.iconContainer}>
+          <Image source={item.icon} />
+        </View>
+        <Text style={styles.description}>{item.description}</Text>
       </View>
-      <Text style={styles.description}>{item.description}</Text>
     </View>
   );
   return (
@@ -81,34 +87,46 @@ export default Cars;
 const stylesheet = createStyleSheet((theme) => ({
   container: {
     marginTop: 16,
-    width: 98,
-    height: 104,
     borderRadius: 16,
     borderWidth: 1,
     gap: 12,
-    marginLeft: 24,
-    marginRight: 24,
-    padding: 16,
+    marginHorizontal: 12,
+    paddingTop: 16,
+    paddingHorizontal: 29.17,
+    paddingBottom: 29.17,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: theme.colors.gray200,
-    backgroundColor: theme.colors.white,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray600
+        : theme.colors.gray200,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.white,
   },
   description: {
     ...theme.typography.bodySmall.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
+    marginTop: 12,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
     borderRadius: 10,
-    borderWidth: 1,
-    backgroundColor: theme.colors.gray900,
+    // borderWidth: 1,
+    padding: 8,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray900,
     justifyContent: "center",
     alignItems: "center",
   },
   icon: {
     justifyContent: "center",
     alignItems: "center",
+    gap: 12,
   },
 }));

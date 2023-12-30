@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 
 const Header = ({ title, subtitle, onPress }: any) => {
   const { styles, theme } = useStyles(stylesheet);
@@ -21,20 +25,26 @@ export default Header;
 const stylesheet = createStyleSheet((theme) => ({
   container: {
     marginTop: 24,
-    marginLeft: 8,
-    marginRight: 8,
+    marginHorizontal: 12,
   },
   topBrandContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginLeft: 16,
-    marginRight: 16,
+    // marginLeft: 16,
+    // marginRight: 16,
   },
   topBrandTitle: {
     ...theme.typography.bodyXLarge.bold,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   topBrandSubtitle: {
     ...theme.typography.bodyMedium.medium,
-    color: theme.colors.gray500,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray400
+        : theme.colors.gray500,
   },
 }));

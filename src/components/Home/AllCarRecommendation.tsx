@@ -9,7 +9,11 @@ import {
   Pressable,
 } from "react-native";
 import React, { useEffect, useLayoutEffect } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { FontAwesome } from "@expo/vector-icons";
 import {
   IconEngine,
@@ -17,6 +21,7 @@ import {
   IconStar,
 } from "tabler-icons-react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Screen } from "../screen";
 // import CarDetailScreen from "../../screens/carDetailsScreen/carDetailScreen";
 
 interface CarItem {
@@ -133,7 +138,10 @@ const AllCarRecommendation = () => {
       }
       style={{
         padding: 16,
-        backgroundColor: theme.colors.gray50,
+        backgroundColor:
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray50,
         gap: 14,
         marginTop: 24,
         borderRadius: 16,
@@ -167,7 +175,15 @@ const AllCarRecommendation = () => {
           </View>
         </View>
       </View>
-      <View style={{ height: 1, backgroundColor: theme.colors.gray200 }} />
+      <View
+        style={{
+          height: 1,
+          backgroundColor:
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray700
+              : theme.colors.gray200,
+        }}
+      />
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={{ flexDirection: "row", gap: 12 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
@@ -199,9 +215,17 @@ const AllCarRecommendation = () => {
   );
 
   return (
-    <View
+    <Screen
+      backgroundColor={theme.colors.background}
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+      }}
       style={{
-        backgroundColor: "white",
         flex: 1,
       }}
     >
@@ -212,7 +236,7 @@ const AllCarRecommendation = () => {
         renderItem={renderItem}
         ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
       />
-    </View>
+    </Screen>
   );
 };
 
@@ -228,8 +252,11 @@ const stylesheet = createStyleSheet((theme) => ({
     marginLeft: 24,
     marginRight: 24,
     padding: 16,
-    borderColor: theme.colors.gray200,
-    backgroundColor: theme.colors.white,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
+    // backgroundColor: theme.colors.white,
   },
   ratingContainer: {
     flex: 1,
@@ -238,7 +265,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   description: {
     ...theme.typography.bodyXLarge.bold,
-    color: theme.colors.gray500,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray500,
     // marginRight: 15,
   },
   descriptionContainer: {
@@ -258,7 +288,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   titleContainer: {
     borderTopWidth: 1,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
   },
   title: {
     flexDirection: "row",

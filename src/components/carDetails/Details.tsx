@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React, { ReactNode, useEffect, useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { Tabs } from "react-native-collapsible-tab-view";
 import Accordion from "react-native-collapsible/Accordion";
 import { TouchableOpacity } from "react-native";
@@ -137,7 +141,23 @@ const Details = () => {
     <>
       <View style={styles.sectionTitle}>
         <Text style={styles.title}>{section.title}</Text>
-        {isActive ? <IconChevronUp /> : <IconChevronDown />}
+        {isActive ? (
+          <IconChevronUp
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray50
+                : theme.colors.gray900
+            }
+          />
+        ) : (
+          <IconChevronDown
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray50
+                : theme.colors.gray900
+            }
+          />
+        )}
       </View>
     </>
   );
@@ -188,6 +208,10 @@ const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
     //marginLeft: 24,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray900
+        : theme.colors.white,
   },
   content: {
     ...theme.typography.bodyMedium.medium,
@@ -206,7 +230,10 @@ const stylesheet = createStyleSheet((theme) => ({
     borderWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 4,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     paddingBottom: 12,
   },
   contents: {
@@ -219,7 +246,10 @@ const stylesheet = createStyleSheet((theme) => ({
     paddingVertical: 12,
     paddingBottom: 12,
     paddingTop: 12,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
   },
   contentTitle: {},
   contentType: {
@@ -230,7 +260,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   contentDescription: {
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   sectionTitle: {
     // flex: 1,
@@ -240,6 +273,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   title: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    marginBottom: 12,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
 }));

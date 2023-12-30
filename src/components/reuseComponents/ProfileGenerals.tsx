@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import { useStyles } from "react-native-unistyles";
+import { UnistylesRuntime, useStyles } from "react-native-unistyles";
 import { IconReceiptTax, IconChevronRight } from "tabler-icons-react-native";
+import { isDarkMode } from "../../core";
 
 const ProfileGenerals = ({
   icon,
@@ -10,6 +11,7 @@ const ProfileGenerals = ({
   icon2,
   backgroundColor,
   onPress,
+  paddingHorizontal,
 }: any) => {
   const { styles, theme } = useStyles();
   return (
@@ -21,8 +23,13 @@ const ProfileGenerals = ({
         alignItems: "center",
         borderRadius: 14,
         borderWidth: borderWidth,
-        borderColor: theme.colors.gray200,
-        padding: 12,
+        marginHorizontal: 24,
+        borderColor:
+          UnistylesRuntime?.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray200,
+        paddingVertical: 12,
+        paddingHorizontal: paddingHorizontal,
       }}
     >
       <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
@@ -39,7 +46,7 @@ const ProfileGenerals = ({
         <Text
           style={{
             ...theme.typography.bodyMedium.bold,
-            //   color: theme.colors.gray900,
+            color: theme.colors.text,
           }}
         >
           {text}
@@ -47,7 +54,14 @@ const ProfileGenerals = ({
       </View>
       <View style={{ flexDirection: "row", gap: 8 }}>
         {icon2}
-        <IconChevronRight size={20} />
+        <IconChevronRight
+          size={20}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray500
+              : theme.colors.gray400
+          }
+        />
       </View>
     </Pressable>
   );

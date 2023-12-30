@@ -17,12 +17,17 @@ import {
   IconHeart,
   IconSortDescending,
 } from "tabler-icons-react-native";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { FontAwesome } from "@expo/vector-icons";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 import Sort from "../favorite/Sort";
 import CustomBottomSheet from "../bottomSheet/CustomBottomSheet";
+import { Screen } from "../screen";
 
 interface CarItem {
   id: number;
@@ -162,7 +167,10 @@ const Favorite = () => {
         // }
         style={{
           padding: 16,
-          backgroundColor: theme.colors.gray50,
+          backgroundColor:
+            UnistylesRuntime?.themeName === "dark"
+              ? theme.colors.gray800
+              : theme.colors.gray50,
           gap: 14,
           marginTop: 24,
           borderRadius: 16,
@@ -191,7 +199,7 @@ const Favorite = () => {
               Free test drive
             </Text>
           </View>
-          <IconHeart size={24} />
+          <IconHeart size={24} color={theme.colors.errorDark} />
         </View>
         <View
           style={{
@@ -225,7 +233,12 @@ const Favorite = () => {
             </View>
           </View>
         </View>
-        <View style={{ height: 1, backgroundColor: theme.colors.gray200 }} />
+        <View
+          style={[
+            styles.titleContainer,
+            { height: 1, backgroundColor: theme.colors.gray200 },
+          ]}
+        />
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View style={{ flexDirection: "row", gap: 12 }}>
             <View
@@ -262,9 +275,17 @@ const Favorite = () => {
   );
   return (
     // <></>
-    <View
+    <Screen
+      backgroundColor={theme.colors.background}
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+      }}
       style={{
-        backgroundColor: theme.colors.white,
         flex: 1,
       }}
     >
@@ -279,7 +300,10 @@ const Favorite = () => {
         <Text
           style={{
             ...theme.typography.bodyXLarge.bold,
-            color: theme.colors.gray900,
+            color:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray50
+                : theme.colors.gray900,
           }}
         >
           10 cars
@@ -307,7 +331,7 @@ const Favorite = () => {
       />
 
       <CustomBottomSheet ref={bottomSheetRef} handleClose={handleClose} />
-    </View>
+    </Screen>
   );
 };
 
@@ -327,7 +351,10 @@ const stylesheet = createStyleSheet((theme) => ({
     marginLeft: 24,
     marginRight: 24,
     padding: 16,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     backgroundColor: theme.colors.white,
   },
   ratingContainer: {
@@ -337,7 +364,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   description: {
     ...theme.typography.bodyXLarge.bold,
-    color: theme.colors.gray500,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray500,
     // marginRight: 15,
   },
   descriptionContainer: {
@@ -347,7 +377,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   price: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.primary,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.primary,
     marginLeft: 53,
   },
   imageContainer: {
@@ -357,7 +390,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   titleContainer: {
     borderTopWidth: 1,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
   },
   title: {
     flexDirection: "row",

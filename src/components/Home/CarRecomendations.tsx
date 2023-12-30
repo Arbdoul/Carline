@@ -8,7 +8,11 @@ import {
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { FontAwesome } from "@expo/vector-icons";
 import Header from "../reuseComponents/Header";
 import { useNavigation } from "@react-navigation/native";
@@ -175,7 +179,17 @@ const CarRecomendations = () => {
             <Text style={styles.descriptionTitle}>Audi A8 Quattro</Text>
             <View style={styles.iconContainer}>
               <FontAwesome name="star" size={24} color={theme.colors.warning} />
-              <Text>4.5</Text>
+              <Text
+                style={{
+                  ...theme.typography.bodySmall.medium,
+                  color:
+                    UnistylesRuntime?.themeName === "dark"
+                      ? theme.colors.gray400
+                      : theme.colors.gray500,
+                }}
+              >
+                4.5
+              </Text>
             </View>
           </View>
 
@@ -197,15 +211,17 @@ const CarRecomendations = () => {
   return (
     <>
       <View>
-        <Header
-          title="Car Remcommendation"
-          subtitle="view all"
-          onPress={handlePress}
-        />
+        <View style={styles.header}>
+          <Header
+            title="Car Remcommendation"
+            subtitle="view all"
+            onPress={handlePress}
+          />
+        </View>
         <View>
           {verticalList ? (
             <View>
-              {carRecommendation.map((item, index) => (
+              {/* {carRecommendation.map((item, index) => (
                 <View key={index}>
                   <View style={styles.imageContainer}>
                     <View>
@@ -247,7 +263,7 @@ const CarRecomendations = () => {
                     </View>
                   </View>
                 </View>
-              ))}
+              ))} */}
             </View>
           ) : (
             <FlatList
@@ -270,6 +286,9 @@ const stylesheet = createStyleSheet((theme) => ({
   container: {
     marginTop: 24,
   },
+  header: {
+    marginHorizontal: 12,
+  },
   carRecomendationContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -291,14 +310,20 @@ const stylesheet = createStyleSheet((theme) => ({
     overflow: "hidden",
     width: 228,
     height: 270,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
     marginLeft: 20,
     margin: 10,
   },
   image: {
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: theme.colors.gray50,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
     borderTopWidth: 30,
     width: 174,
     height: 116,
@@ -333,10 +358,16 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   descriptionTitle: {
     ...theme.typography.bodyMedium.bold,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
 
   iconContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
     marginLeft: 5,
   },
   detailsContainer: {

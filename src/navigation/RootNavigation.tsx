@@ -2,7 +2,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useCachedResources } from "../theme/CatchedResources";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/BrandScreen";
 import Home from "../components/Home/Home";
@@ -36,6 +36,7 @@ import TestDrive from "../components/profile/TestDrive";
 import Vouchers from "../components/profile/Vouchers";
 import Settings from "../components/profile/Settings";
 import LinkAccount from "../components/profile/LinkAccount";
+import { useSelectedTheme } from "../core";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,7 +81,7 @@ function TabNavigator() {
           headerTitleAlign: "center",
           headerShadowVisible: false,
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
           headerTitleStyle: {
             ...theme.typography.bodyXLarge.bold,
@@ -118,6 +119,7 @@ function TabNavigator() {
           },
           headerTitleStyle: {
             ...theme.typography.bodyXLarge.bold,
+            color: "white",
           },
 
           tabBarIcon: ({ color, size }) => (
@@ -172,9 +174,7 @@ const RootNavigation = () => {
           headerTitle: "Car Recommendations",
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: theme.colors.white,
-          },
+          headerTitleStyle: {},
         }}
       />
       <Stack.Screen
@@ -199,7 +199,7 @@ const RootNavigation = () => {
           },
           headerShadowVisible: false,
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -214,7 +214,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -306,14 +306,11 @@ const RootNavigation = () => {
           title: "Appointment",
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          // headerLeft: ()=>(
-
-          // ),
           headerTitleStyle: {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -324,14 +321,11 @@ const RootNavigation = () => {
           title: "Test drive",
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          // headerLeft: ()=>(
-
-          // ),
           headerTitleStyle: {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -349,7 +343,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -367,7 +361,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            //  backgroundColor: theme.colors.white,
           },
         }}
       />
@@ -396,8 +390,31 @@ const RootNavigation = () => {
 export default RootNavigation;
 
 export const RootNavigator = () => {
+  const { styles, theme } = useStyles();
+  const { selectedTheme } = useSelectedTheme();
+  const LightTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: theme.colors.primary,
+      card: theme.colors.white,
+      text: theme.colors.gray900,
+    },
+  };
+  const DarkTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: theme.colors.primary,
+      card: theme.colors.gray900,
+      text: theme.colors.white,
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={selectedTheme === "light" ? LightTheme : DarkTheme}
+    >
       <RootNavigation />
     </NavigationContainer>
   );

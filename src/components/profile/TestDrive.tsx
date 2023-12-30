@@ -10,8 +10,13 @@ import React, { useLayoutEffect } from "react";
 import { IconCalendar } from "tabler-icons-react-native";
 import { useNavigation } from "@react-navigation/native";
 import Search from "../reuseComponents/Search";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { ScrollView } from "react-native-gesture-handler";
+import { Screen } from "../screen";
 
 interface CarItem {
   id: number;
@@ -55,6 +60,11 @@ const TestDrive = () => {
         <IconCalendar
           size={24}
           style={{ marginRight: 20, paddingTop: 20, paddingBottom: 18 }}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.white
+              : theme.colors.gray400
+          }
         />
       ),
     });
@@ -65,7 +75,10 @@ const TestDrive = () => {
         marginHorizontal: 24,
         marginTop: 24,
         borderRadius: 16,
-        backgroundColor: theme.colors.gray50,
+        backgroundColor:
+          UnistylesRuntime?.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray50,
       }}
     >
       <View
@@ -73,7 +86,10 @@ const TestDrive = () => {
           flexDirection: "row",
           alignItems: "center",
           gap: 16,
-          borderBottomColor: theme.colors.gray200,
+          borderBottomColor:
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray700
+              : theme.colors.gray200,
           marginHorizontal: 16,
           borderBottomWidth: 1,
         }}
@@ -83,7 +99,10 @@ const TestDrive = () => {
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900,
             }}
           >
             {item.description}
@@ -119,7 +138,10 @@ const TestDrive = () => {
           <Text
             style={{
               ...theme.typography.bodySmall.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900,
             }}
           >
             10km
@@ -165,7 +187,10 @@ const TestDrive = () => {
           <Text
             style={{
               ...theme.typography.bodySmall.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900,
             }}
           >
             date here
@@ -183,7 +208,10 @@ const TestDrive = () => {
           <Text
             style={{
               ...theme.typography.bodySmall.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900,
             }}
           >
             Time here
@@ -193,14 +221,27 @@ const TestDrive = () => {
     </ScrollView>
   );
   return (
-    <View style={styles.rootContainer}>
-      <Search placeholder="Search..." />
+    <Screen
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+      }}
+      style={styles.rootContainer}
+    >
+      <Search
+        placeholder="Search..."
+        placeholderTextColor={theme.colors.gray500}
+      />
       <FlatList
         data={items}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
-    </View>
+    </Screen>
   );
 };
 
@@ -209,6 +250,6 @@ export default TestDrive;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
   },
 }));

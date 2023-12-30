@@ -1,6 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   IconQuestionMark,
   IconShieldCheck,
@@ -95,7 +99,10 @@ export default InspectionAndDeliveryScreen;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray900
+        : theme.colors.white,
   },
   vehicleInspectionContainer: {
     flexDirection: "row",

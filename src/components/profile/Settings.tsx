@@ -37,8 +37,11 @@ const Settings = () => {
       backgroundColor={theme.colors.background}
       statusBarProps={{
         backgroundColor: theme.colors.background,
-
-        barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
       }}
       //statusBarStyle="dark"
     >
@@ -149,6 +152,6 @@ const stylesheet = createStyleSheet((theme) => ({
   accountSetting: {
     marginTop: 8,
     paddingTop: 8,
-    paddingHorizontal: 24,
+    // paddingHorizontal: 24,
   },
 }));

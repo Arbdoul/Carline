@@ -11,11 +11,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import TopBrands from "./TopBrands";
 import CarRecomendations from "./CarRecomendations";
 import ShopByCarType from "./ShopByCarType";
 import { useNavigation } from "@react-navigation/native";
+import { Screen } from "../screen";
+import Search from "../reuseComponents/Search";
 
 const Home = () => {
   const { styles, theme } = useStyles(stylesheet);
@@ -26,21 +32,41 @@ const Home = () => {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <View style={styles.locationContainer}>
-           <Ionicons name="location-outline" size={24} color="black" />
-             <View style={styles.textContainer}>
-              <Text style={styles.title1}>Location</Text>
-              <Text style={styles.subtitle}>San Fransisco</Text>
-             </View>
-        <View style={styles.bell}>
-          <EvilIcons name="bell" size={24} color="black" />
-        </View>
-      </View> */}
-      <ScrollView style={styles.container}>
+      <Screen
+        backgroundColor={theme.colors.background}
+        preset="scroll"
+        statusBarProps={{
+          //  backgroundColor: theme.colors.background,
+          barStyle:
+            UnistylesRuntime?.themeName === "dark"
+              ? "light-content"
+              : "dark-content",
+          //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+        }}
+        style={styles.container}
+      >
         <View style={styles.headerContainer}>
           <Pressable onPress={handlePress} style={styles.locationContainer}>
-            <View>
-              <Ionicons name="location-outline" size={24} color="black" />
+            <View
+              style={{
+                padding: 10,
+                borderRadius: 12,
+                //borderWidth: 1,
+                backgroundColor:
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray800
+                    : theme.colors.gray50,
+              }}
+            >
+              <Ionicons
+                name="location-outline"
+                size={24}
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.white
+                    : theme.colors.gray900
+                }
+              />
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.title1}>Location</Text>
@@ -48,26 +74,30 @@ const Home = () => {
             </View>
           </Pressable>
           <View style={styles.bell}>
-            <EvilIcons name="bell" size={24} color="black" />
+            <EvilIcons
+              name="bell"
+              size={24}
+              color={
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900
+              }
+            />
           </View>
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Search cars"
-            placeholderTextColor={theme.colors.gray400}
-          />
-          <EvilIcons
-            // style={styles.iconContainer}
-            name="search"
-            size={24}
-            color="black"
-          />
-        </View>
+        <Search
+          placeholder="Search..."
+          placeholderTextColor={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray500
+              : theme.colors.gray50
+          }
+        />
+
         <TopBrands />
         <CarRecomendations />
         <ShopByCarType />
-      </ScrollView>
+      </Screen>
     </SafeAreaView>
   );
 };
@@ -77,7 +107,7 @@ export default Home;
 const stylesheet = createStyleSheet((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    // backgroundColor: theme.colors.white,
   },
   headerContainer: {
     flexDirection: "row",
@@ -88,6 +118,7 @@ const stylesheet = createStyleSheet((theme) => ({
     flexDirection: "row",
     margin: 20,
     justifyContent: "space-between",
+    alignItems: "center",
   },
   textContainer: {
     marginHorizontal: 10,
@@ -100,10 +131,20 @@ const stylesheet = createStyleSheet((theme) => ({
   subtitle: {
     fontWeight: "700",
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   bell: {
     marginHorizontal: 20,
+    padding: 10,
+    borderRadius: 12,
+    //borderWidth: 1,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
   },
   inputContainer: {
     flexDirection: "row",

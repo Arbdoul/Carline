@@ -126,11 +126,9 @@ const Profile = ({ navigation }: any) => {
             </View>
           </View>
         </View>
-        <View
+        <Screen
           style={{
             flex: 2,
-            backgroundColor: theme.colors.white,
-            marginHorizontal: 24,
             marginTop: 24,
           }}
         >
@@ -140,11 +138,13 @@ const Profile = ({ navigation }: any) => {
             icon2={<IconCircleDot size={16} />}
             borderWidth={1}
             backgroundColor={theme.colors.primary}
+            paddingHorizontal={12}
           />
           <View style={{}}>
             <Text
               style={{
                 marginTop: 24,
+                marginHorizontal: 24,
                 ...theme.typography.bodyMedium.bold,
                 color: theme.colors.gray400,
               }}
@@ -172,7 +172,7 @@ const Profile = ({ navigation }: any) => {
             text="My vouchers"
             backgroundColor={theme.colors.gray50}
           />
-        </View>
+        </Screen>
       </Screen>
     </>
   );

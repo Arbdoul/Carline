@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { forwardRef, useMemo, useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { IconEyeCancel, IconX } from "tabler-icons-react-native";
-import { useStyles } from "react-native-unistyles";
+import { UnistylesRuntime, useStyles } from "react-native-unistyles";
 import { Ionicons } from "@expo/vector-icons";
 
 export type Ref = BottomSheetModal;
@@ -20,7 +20,7 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
         ref={ref}
         index={0}
         snapPoints={snapPoints}
-        //backgroundStyle={{ backgroundColor: theme.colors.primary }}
+        backgroundStyle={{ backgroundColor: theme.colors.background }}
         handleIndicatorStyle={{ display: "none" }}
         //handleIndicatorStyle={theme.colors.white}
       >
@@ -34,7 +34,10 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
           <Text
             style={{
               ...theme.typography.bodyXLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Sort by
@@ -50,19 +53,33 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
             flexDirection: "row",
             justifyContent: "space-between",
             borderTopWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
             paddingTop: 16,
           }}
         >
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Latest saved
           </Text>
-          <Ionicons name="radio-button-on" size={24} color="black" />
+          <Ionicons
+            name="radio-button-on"
+            size={24}
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200
+            }
+          />
         </View>
         <View
           style={{
@@ -71,19 +88,33 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
             flexDirection: "row",
             justifyContent: "space-between",
             borderTopWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
             paddingTop: 16,
           }}
         >
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Longest saved
           </Text>
-          <Ionicons name="radio-button-on" size={24} color="black" />
+          <Ionicons
+            name="radio-button-on"
+            size={24}
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200
+            }
+          />
         </View>
         <View
           style={{
@@ -92,19 +123,33 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
             flexDirection: "row",
             justifyContent: "space-between",
             borderTopWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
             paddingTop: 16,
           }}
         >
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Most reviewed
           </Text>
-          <Ionicons name="radio-button-on" size={24} color="black" />
+          <Ionicons
+            name="radio-button-on"
+            size={24}
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200
+            }
+          />
         </View>
         <View
           style={{
@@ -113,19 +158,33 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
             flexDirection: "row",
             justifyContent: "space-between",
             borderTopWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
             paddingTop: 16,
           }}
         >
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Highest price
           </Text>
-          <Ionicons name="radio-button-on" size={24} color="black" />
+          <Ionicons
+            name="radio-button-on"
+            size={24}
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200
+            }
+          />
         </View>
         <View
           style={{
@@ -134,19 +193,33 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>(
             flexDirection: "row",
             justifyContent: "space-between",
             borderTopWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
             paddingTop: 16,
           }}
         >
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime?.themeName === "dark"
+                  ? theme.colors.gray50
+                  : theme.colors.gray900,
             }}
           >
             Lowest price
           </Text>
-          <Ionicons name="radio-button-on" size={24} color="black" />
+          <Ionicons
+            name="radio-button-on"
+            size={24}
+            color={
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200
+            }
+          />
         </View>
       </BottomSheetModal>
     );

@@ -19,7 +19,11 @@ import {
   IconEngine,
   IconClock,
 } from "tabler-icons-react-native";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   Tabs,
   MaterialTabBar,
@@ -53,19 +57,46 @@ const CarDetailScreen = ({ navigation, route }: any) => {
   const performance: Performance[] = [
     {
       id: 1,
-      icon: <IconEngine size={24} />,
+      icon: (
+        <IconEngine
+          size={24}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.white
+              : theme.colors.secondary
+          }
+        />
+      ),
       performanceHeader: "355 hp",
       PerformanceBody: "Horse power",
     },
     {
       id: 2,
-      icon: <IconDashboard size={24} />,
+      icon: (
+        <IconDashboard
+          size={24}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.white
+              : theme.colors.secondary
+          }
+        />
+      ),
       performanceHeader: "369 lb-ft hp",
       PerformanceBody: "Torque",
     },
     {
       id: 3,
-      icon: <IconClock size={24} />,
+      icon: (
+        <IconClock
+          size={24}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.white
+              : theme.colors.secondary
+          }
+        />
+      ),
       performanceHeader: "5.6 sec",
       PerformanceBody: "0-60mph",
     },
@@ -100,7 +131,9 @@ const CarDetailScreen = ({ navigation, route }: any) => {
           {performance.map((item) => (
             <View style={styles.performanceItem} key={item.id}>
               <Text>{item.icon}</Text>
-              <Text>{item.performanceHeader}</Text>
+              <Text style={styles.performanceHeader}>
+                {item.performanceHeader}
+              </Text>
               <Text style={styles.performanceBody}>{item.PerformanceBody}</Text>
             </View>
           ))}
@@ -120,6 +153,13 @@ const CarDetailScreen = ({ navigation, route }: any) => {
             labelStyle={{
               ...theme.typography.bodyMedium.medium,
               textTransform: "capitalize",
+              color: theme.colors.gray500,
+            }}
+            contentContainerStyle={{
+              backgroundColor:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.gray900
+                  : theme.colors.white,
             }}
             activeColor={theme.colors.primary}
             indicatorStyle={{ backgroundColor: theme.colors.primary }}
@@ -160,7 +200,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray900
+        : theme.colors.white,
   },
 
   headerIcon: {
@@ -174,12 +217,22 @@ const stylesheet = createStyleSheet((theme) => ({
     alignItems: "center",
     paddingTop: 20,
     paddingBottom: 20,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
   },
   performanceItem: {
     justifyContent: "center",
     alignItems: "center",
     gap: 6,
+  },
+  performanceHeader: {
+    ...theme.typography.bodySmall.regular,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   performanceBody: {
     ...theme.typography.bodySmall.regular,

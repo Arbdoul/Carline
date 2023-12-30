@@ -44,43 +44,43 @@ const colors = {
   purple: "#8C62FF",
 };
 
-const typography = (theme: "light" | "dark") => ({
+const typography = {
   // Headings
   h1: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 48,
     letterSpacing: -1,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
   h2: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 40,
     letterSpacing: 0,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
   h3: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 32,
     letterSpacing: 0,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
   h4: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 24,
     letterSpacing: 0,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
   h5: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 20,
     letterSpacing: 0,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
   h6: {
     fontFamily: "Urbanist_700Bold",
     fontSize: 18,
     letterSpacing: 0,
-    color: theme === "dark" ? colors.gray900 : colors.gray50,
+    // color: theme === "dark" ? colors.gray900 : colors.gray50,
   },
 
   // Body styles
@@ -89,19 +89,19 @@ const typography = (theme: "light" | "dark") => ({
       fontFamily: "Urbanist_400Regular",
       fontSize: 18,
       letterSpacing: 0.4,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     medium: {
       fontFamily: "Urbanist_500Medium",
       fontSize: 18,
       letterSpacing: 0.4,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     bold: {
       fontFamily: "Urbanist_700Bold",
       fontSize: 18,
       letterSpacing: 0.3,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      //color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
   },
   bodyLarge: {
@@ -109,19 +109,19 @@ const typography = (theme: "light" | "dark") => ({
       fontFamily: "Urbanist_400Regular",
       fontSize: 16,
       letterSpacing: 0.4,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     medium: {
       fontFamily: "Urbanist_500Medium",
       fontSize: 16,
       letterSpacing: 0.4,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     bold: {
       fontFamily: "Urbanist_700Bold",
       fontSize: 16,
       letterSpacing: 0.4,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
   },
   bodyMedium: {
@@ -129,19 +129,19 @@ const typography = (theme: "light" | "dark") => ({
       fontFamily: "Urbanist_400Regular",
       fontSize: 14,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     medium: {
       fontFamily: "Urbanist_500Medium",
       fontSize: 14,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     bold: {
       fontFamily: "Urbanist_700Bold",
       fontSize: 14,
       letterSpacing: 0.4,
-      color: theme === "light" ? colors.gray900 : colors.gray50,
+      //   color: theme === "light" ? colors.gray900 : colors.gray50,
     },
   },
   bodySmall: {
@@ -149,19 +149,19 @@ const typography = (theme: "light" | "dark") => ({
       fontFamily: "Urbanist_400Regular",
       fontSize: 12,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     medium: {
       fontFamily: "Urbanist_500Medium",
       fontSize: 12,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     bold: {
       fontFamily: "Urbanist_700Bold",
       fontSize: 12,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
   },
   bodyXSmall: {
@@ -169,22 +169,22 @@ const typography = (theme: "light" | "dark") => ({
       fontFamily: "Urbanist_400Regular",
       fontSize: 10,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     medium: {
       fontFamily: "Urbanist_500Medium",
       fontSize: 10,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
     bold: {
       fontFamily: "Urbanist_700Bold",
       fontSize: 10,
       letterSpacing: 0.5,
-      color: theme === "dark" ? colors.gray900 : colors.gray50,
+      // color: theme === "dark" ? colors.gray900 : colors.gray50,
     },
   },
-});
+};
 
 const utils = {
   hexToRGBA: (hex: string, opacity: number) => {
@@ -203,7 +203,8 @@ export const lightTheme = {
     background: colors.white,
     ...colors,
   },
-  typography: typography("light"),
+  typography,
+  //: typography("light"),
   utils,
 };
 export const darkTheme = {
@@ -213,7 +214,8 @@ export const darkTheme = {
     background: colors.gray900,
     ...colors,
   },
-  typography: typography("dark"),
+  typography,
+  //: typography("dark"),
   utils,
 };
 

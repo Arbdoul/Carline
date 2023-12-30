@@ -17,7 +17,7 @@ const TopBrands = () => {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Header title="Top brands" subtitle="view all" />
       <Cars />
     </SafeAreaView>
@@ -26,4 +26,8 @@ const TopBrands = () => {
 
 export default TopBrands;
 
-const stylesheet = createStyleSheet((theme) => ({}));
+const stylesheet = createStyleSheet((theme) => ({
+  container: {
+    marginHorizontal: 12,
+  },
+}));

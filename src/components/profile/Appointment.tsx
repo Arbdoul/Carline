@@ -9,8 +9,13 @@ import {
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { IconCalendar, IconClock } from "tabler-icons-react-native";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import Search from "../reuseComponents/Search";
+import { Screen } from "../screen";
 
 interface CarItem {
   id: number;
@@ -56,6 +61,11 @@ const Appointment = ({ navigation }: any) => {
       headerRight: () => (
         <IconCalendar
           size={24}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.white
+              : theme.colors.gray400
+          }
           style={{ marginRight: 20, paddingTop: 20, paddingBottom: 18 }}
         />
       ),
@@ -63,20 +73,27 @@ const Appointment = ({ navigation }: any) => {
   }, []);
 
   const renderItem = ({ item }: { item: CarItem }) => (
-    <ScrollView
+    <Screen
       style={{
-        marginHorizontal: 24,
+        // marginHorizontal: 24,
         marginTop: 24,
         borderRadius: 16,
-        backgroundColor: theme.colors.gray50,
+        backgroundColor:
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray50,
       }}
+      preset="scroll"
     >
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           gap: 16,
-          borderBottomColor: theme.colors.gray200,
+          borderBottomColor:
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray700
+              : theme.colors.gray200,
           marginHorizontal: 16,
           borderBottomWidth: 1,
         }}
@@ -86,7 +103,10 @@ const Appointment = ({ navigation }: any) => {
           <Text
             style={{
               ...theme.typography.bodyLarge.bold,
-              color: theme.colors.gray900,
+              color:
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.white
+                  : theme.colors.gray900,
             }}
           >
             {item.description}
@@ -132,7 +152,10 @@ const Appointment = ({ navigation }: any) => {
             <Text
               style={{
                 ...theme.typography.bodySmall.bold,
-                color: theme.colors.gray900,
+                color:
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.white
+                    : theme.colors.gray900,
                 marginTop: 4,
               }}
             >
@@ -162,7 +185,10 @@ const Appointment = ({ navigation }: any) => {
             <Text
               style={{
                 ...theme.typography.bodySmall.bold,
-                color: theme.colors.gray900,
+                color:
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.white
+                    : theme.colors.gray900,
                 marginTop: 4,
               }}
             >
@@ -171,17 +197,31 @@ const Appointment = ({ navigation }: any) => {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </Screen>
   );
   return (
-    <View style={styles.rootcontainer}>
-      <Search placeholder="Search..." />
-      <FlatList
-        data={items}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+    <Screen
+      style={styles.rootcontainer}
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+      }}
+    >
+      <Search
+        placeholder="Search..."
+        placeholderTextColor={theme.colors.gray500}
       />
-    </View>
+      <View style={styles.container}>
+        <FlatList
+          data={items}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
+    </Screen>
   );
 };
 
@@ -190,6 +230,9 @@ export default Appointment;
 const stylesheet = createStyleSheet((theme) => ({
   rootcontainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
+  },
+  container: {
+    marginHorizontal: 24,
   },
 }));

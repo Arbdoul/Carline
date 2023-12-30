@@ -17,7 +17,7 @@ export const SelectTheme = (props: SelectProps) => {
   const modal = useModal();
   const { styles, theme } = useStyles();
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
-  console.log(UnistylesRuntime.themeName);
+  UnistylesRuntime.themeName;
 
   const themes = React.useMemo(
     () => [
@@ -47,35 +47,3 @@ export const SelectTheme = (props: SelectProps) => {
     </>
   );
 };
-
-/* const useColors = (error: boolean) => {
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
-
-  const borderColor = error
-    ? 'border-danger-600'
-    : isDark
-    ? 'border-charcoal-700'
-    : 'border-neutral-400';
-
-  const bgColor = isDark
-    ? 'bg-charcoal-800'
-    : error
-    ? 'bg-danger-50'
-    : 'bg-neutral-200';
-
-  const labelColor = error
-    ? 'text-danger-600'
-    : isDark
-    ? 'text-charcoal-100'
-    : 'text-black';
-
-  const valueColor = error
-    ? 'text-danger-600'
-    : isDark
-    ? 'text-charcoal-100'
-    : 'text-neutral-600';
-
-  return { borderColor, bgColor, labelColor, valueColor } as const;
-};
- */

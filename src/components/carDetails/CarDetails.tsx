@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import CustomButton from "../../ui/CustomButton";
 import { Tabs } from "react-native-collapsible-tab-view";
 import { useNavigation } from "@react-navigation/native";
@@ -81,7 +85,10 @@ const stylesheet = createStyleSheet((theme) => ({
     bottom: -710,
     left: 0,
     right: 24,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray900
+        : theme.colors.white,
   },
   button: {
     width: 190,
@@ -95,6 +102,9 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   money: {
     ...theme.typography.h4,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
 }));

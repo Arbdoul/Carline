@@ -7,7 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   IconEngine,
   IconManualGearbox,
@@ -82,9 +86,9 @@ const PurchaseMethod = () => {
               <Image source={purchaseDetails.rectangle} />
             </View>
 
-            <View style={styles.purchaseContainer}>
-              <View style={styles.purchaseIcon}>
-                <IconCameraDollar size={16} />
+            <View style={styles.purchaseContainer2}>
+              <View style={styles.purchaseIcon2}>
+                <IconCameraDollar size={16} color={theme.colors.white} />
               </View>
               <View>
                 <Text style={styles.purchaseTitle}>Payment full</Text>
@@ -101,24 +105,28 @@ const PurchaseMethod = () => {
             <Text style={styles.carlinePromise}>Carline promise</Text>
             <View style={styles.carPromiseDetails}>
               <IconCircleCheck size={12} color={theme.colors.success} />
-              <Text>Fixed Price, No Hidden Fees</Text>
+              <Text style={styles.carPromiseText}>
+                Fixed Price, No Hidden Fees
+              </Text>
             </View>
             <View style={styles.carPromiseDetails}>
               <IconCircleCheck size={12} color={theme.colors.success} />
-              <Text>Proof of car insurance</Text>
+              <Text style={styles.carPromiseText}>Proof of car insurance</Text>
             </View>
             <View style={styles.carPromiseDetails}>
               <IconCircleCheck size={12} color={theme.colors.success} />
-              <Text>Proof of address, as recent as 30 days</Text>
+              <Text style={styles.carPromiseText}>
+                Proof of address, as recent as 30 days
+              </Text>
             </View>
             <View style={styles.carPromiseDetails}>
               <IconCircleCheck size={12} color={theme.colors.success} />
-              <Text>any additional owners present</Text>
+              <Text style={styles.carPromiseText}>
+                any additional owners present
+              </Text>
             </View>
           </View>
         </View>
-        {/* </Tabs.Tab>
-      </Tabs.Container> */}
       </ScrollView>
       <View style={styles.buttonContainer}>
         <CustomButton onPress={handlePress}>Continue</CustomButton>
@@ -139,12 +147,19 @@ const stylesheet = createStyleSheet((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.gray200,
+    borderBottomColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     paddingBottom: 24,
   },
   title: {
     marginTop: 8,
     ...theme.typography.bodyXLarge.bold,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   discriptionContainer: {
     flex: 1,
@@ -174,6 +189,10 @@ const stylesheet = createStyleSheet((theme) => ({
   purshaseMethod: {
     marginTop: 24,
     ...theme.typography.bodyLarge.bold,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   purchaseContainer: {
     flexDirection: "row",
@@ -181,14 +200,35 @@ const stylesheet = createStyleSheet((theme) => ({
     alignItems: "center",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: 24,
+  },
+  purchaseContainer2: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
+    backgroundColor: theme.colors.primary,
     paddingTop: 16,
     paddingBottom: 16,
     marginTop: 24,
   },
   purchaseTitle: {
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   purchaseBody: {
     ...theme.typography.bodyXSmall.regular,
@@ -199,22 +239,42 @@ const stylesheet = createStyleSheet((theme) => ({
     padding: 16,
     backgroundColor: theme.colors.gray50,
   },
+  purchaseIcon2: {
+    borderRadius: 12,
+    padding: 16,
+    backgroundColor: theme.colors.primary400,
+  },
   carlinePromiseContainer: {
     borderRadius: 16,
     marginTop: 24,
     paddingTop: 16,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
     overflow: "hidden",
     paddingHorizontal: 16,
   },
   carlinePromise: {
     ...theme.typography.bodyLarge.bold,
+    marginBottom: 16,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   carPromiseDetails: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     padding: 8,
+  },
+  carPromiseText: {
+    ...theme.typography.bodySmall.medium,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   buttonContainer: {
     position: "absolute",

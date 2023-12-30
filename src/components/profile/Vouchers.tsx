@@ -6,16 +6,22 @@ import {
   ImageSourcePropType,
   Image,
 } from "react-native";
-import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import React, { useLayoutEffect } from "react";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { IconClock, IconClockDollar } from "tabler-icons-react-native";
+import { Screen } from "../screen";
+import { AntDesign } from "@expo/vector-icons";
 
 interface CarItem {
   image: ImageSourcePropType;
   audi: ImageSourcePropType;
 }
 
-const Vouchers = () => {
+const Vouchers = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
 
   const items: CarItem = {
@@ -23,10 +29,42 @@ const Vouchers = () => {
     audi: require("../../../assets/images/vouchers/audi.png"),
   };
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      //  title: "Favorites",
+      headerRight: () => (
+        <AntDesign
+          name="questioncircleo"
+          size={24}
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray500
+              : theme.colors.gray400
+          }
+          style={{ marginRight: 20, paddingTop: 20, paddingBottom: 18 }}
+        />
+      ),
+    });
+  }, []);
+
   return (
-    <View style={styles.rootContainer}>
+    <Screen
+      preset="scroll"
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+      }}
+      style={styles.rootContainer}
+    >
       <View style={styles.textInput}>
-        <TextInput placeholder="Enter promo code" />
+        <TextInput
+          placeholder="Enter promo code"
+          placeholderTextColor={theme.colors.gray500}
+        />
       </View>
       <View style={styles.activeVouchersContainer}>
         <Text style={styles.activeVouchersText}>Active vouchers</Text>
@@ -112,7 +150,10 @@ const Vouchers = () => {
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             borderWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
           }}
         >
           <View
@@ -134,11 +175,14 @@ const Vouchers = () => {
               <View
                 style={{
                   borderRadius: 8,
-                  backgroundColor: theme.colors.gray200,
+                  backgroundColor:
+                    UnistylesRuntime?.themeName === "dark"
+                      ? theme.colors.gray800
+                      : theme.colors.gray200,
                   padding: 8,
                 }}
               >
-                <IconClock />
+                <IconClock color={theme.colors.gray400} />
               </View>
               <View style={{ paddingRight: 24.5 }}>
                 <Text
@@ -153,7 +197,10 @@ const Vouchers = () => {
                 <Text
                   style={{
                     ...theme.typography.bodySmall.bold,
-                    color: theme.colors.gray900,
+                    color:
+                      UnistylesRuntime?.themeName === "dark"
+                        ? theme.colors.white
+                        : theme.colors.gray900,
                     paddingTop: 4,
                   }}
                 >
@@ -167,11 +214,14 @@ const Vouchers = () => {
               <View
                 style={{
                   borderRadius: 8,
-                  backgroundColor: theme.colors.gray200,
+                  backgroundColor:
+                    UnistylesRuntime?.themeName === "dark"
+                      ? theme.colors.gray800
+                      : theme.colors.gray200,
                   padding: 8,
                 }}
               >
-                <IconClockDollar size={32} color={theme.colors.gray500} />
+                <IconClockDollar size={32} color={theme.colors.gray400} />
               </View>
               <View>
                 <Text
@@ -186,7 +236,10 @@ const Vouchers = () => {
                 <Text
                   style={{
                     ...theme.typography.bodySmall.bold,
-                    color: theme.colors.gray900,
+                    color:
+                      UnistylesRuntime?.themeName === "dark"
+                        ? theme.colors.white
+                        : theme.colors.gray900,
                     paddingTop: 4,
                   }}
                 >
@@ -205,7 +258,7 @@ const Vouchers = () => {
             marginHorizontal: 24,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            backgroundColor: theme.colors.secondary,
+            backgroundColor: theme.colors.secondary400,
           }}
         >
           <View
@@ -257,7 +310,10 @@ const Vouchers = () => {
             <Text
               style={{
                 ...theme.typography.bodySmall.medium,
-                color: theme.colors.gray700,
+                color:
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray400
+                    : theme.colors.gray700,
               }}
             >
               Your coupon code:
@@ -278,7 +334,10 @@ const Vouchers = () => {
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             borderWidth: 1,
-            borderColor: theme.colors.gray200,
+            borderColor:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray700
+                : theme.colors.gray200,
           }}
         >
           <View
@@ -300,11 +359,14 @@ const Vouchers = () => {
               <View
                 style={{
                   borderRadius: 8,
-                  backgroundColor: theme.colors.gray200,
+                  backgroundColor:
+                    UnistylesRuntime?.themeName === "dark"
+                      ? theme.colors.gray800
+                      : theme.colors.gray200,
                   padding: 8,
                 }}
               >
-                <IconClock />
+                <IconClock color={theme.colors.gray400} />
               </View>
               <View style={{ paddingRight: 24.5 }}>
                 <Text
@@ -319,7 +381,10 @@ const Vouchers = () => {
                 <Text
                   style={{
                     ...theme.typography.bodySmall.bold,
-                    color: theme.colors.gray900,
+                    color:
+                      UnistylesRuntime?.themeName === "dark"
+                        ? theme.colors.white
+                        : theme.colors.gray900,
                     paddingTop: 4,
                   }}
                 >
@@ -333,11 +398,14 @@ const Vouchers = () => {
               <View
                 style={{
                   borderRadius: 8,
-                  backgroundColor: theme.colors.gray200,
+                  backgroundColor:
+                    UnistylesRuntime?.themeName === "dark"
+                      ? theme.colors.gray800
+                      : theme.colors.gray200,
                   padding: 8,
                 }}
               >
-                <IconClockDollar size={32} color={theme.colors.gray500} />
+                <IconClockDollar size={32} color={theme.colors.gray400} />
               </View>
               <View>
                 <Text
@@ -352,7 +420,10 @@ const Vouchers = () => {
                 <Text
                   style={{
                     ...theme.typography.bodySmall.bold,
-                    color: theme.colors.gray900,
+                    color:
+                      UnistylesRuntime?.themeName === "dark"
+                        ? theme.colors.white
+                        : theme.colors.gray900,
                     paddingTop: 4,
                   }}
                 >
@@ -363,7 +434,7 @@ const Vouchers = () => {
           </View>
         </View>
       </View>
-    </View>
+    </Screen>
   );
 };
 
@@ -372,7 +443,7 @@ export default Vouchers;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
   },
   textInput: {
     borderRadius: 16,
@@ -382,7 +453,7 @@ const stylesheet = createStyleSheet((theme) => ({
     padding: 16,
     marginHorizontal: 24,
     marginTop: 12,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor: theme.colors.gray800,
   },
   activeVouchersContainer: {
     marginTop: 24,

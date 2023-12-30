@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Pressable, Switch } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useStyles } from "react-native-unistyles";
+import { isDarkMode } from "../../core";
 
 const Swtich = ({
   icon,
@@ -13,6 +14,7 @@ const Swtich = ({
   maginTop,
 }: any) => {
   const { styles, theme } = useStyles();
+
   return (
     <Pressable
       onPress={onPress}
@@ -23,8 +25,9 @@ const Swtich = ({
         borderRadius: 14,
         borderWidth: borderWidth,
         borderColor: theme.colors.gray200,
-        padding: 12,
+        paddingVertical: 12,
         marginTop: maginTop,
+        marginHorizontal: 24,
       }}
     >
       <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
@@ -41,7 +44,7 @@ const Swtich = ({
         <Text
           style={{
             ...theme.typography.bodyMedium.bold,
-            //   color: theme.colors.gray900,
+            color: theme.colors.text,
           }}
         >
           {text}
