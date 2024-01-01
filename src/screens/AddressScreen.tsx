@@ -13,10 +13,16 @@ import {
   IconSearch,
   IconCheckbox,
 } from "tabler-icons-react-native";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import CustomButton from "../ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import Address from "../components/reuseComponents/Address";
+import Search from "../components/reuseComponents/Search";
+import { Screen } from "../components/screen";
 
 interface ImageProp {
   map: ImageSourcePropType;
@@ -59,32 +65,49 @@ const AddressScreen = ({ navigation }: any) => {
   }, [navigation]);
 
   return (
-    <View style={styles.rootContainer}>
-      <View style={styles.textInput}>
-        <TextInput placeholder="Find an address..." />
-        <IconSearch size={24} />
-      </View>
+    <>
+      <Screen
+        style={styles.rootContainer}
+        // backgroundColor={theme.colors.background}
+        statusBarProps={{
+          backgroundColor: theme.colors.background,
+          barStyle:
+            UnistylesRuntime?.themeName === "dark"
+              ? "light-content"
+              : "dark-content",
+          //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
+        }}
+      >
+        <Search
+          placeholder="Find an address..."
+          placeholderTextColor={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray500
+              : theme.colors.gray400
+          }
+        />
 
-      <Address
-        header="Home"
-        address="Jackson Street, San Francisco,"
-        address1="California 94109"
-      />
-      <Address
-        header="Office"
-        address="Union St, San Francisco"
-        address1="California 94109"
-      />
+        <Address
+          header="Home"
+          address="Jackson Street, San Francisco,"
+          address1="California 94109"
+        />
+        <Address
+          header="Office"
+          address="Union St, San Francisco"
+          address1="California 94109"
+        />
 
-      <Address
-        header="University"
-        address="University Of San Francisco, San"
-        address1="Francisco, California 94118"
-      />
+        <Address
+          header="University"
+          address="University Of San Francisco, San"
+          address1="Francisco, California 94118"
+        />
+      </Screen>
       <View style={styles.buttonContainer}>
         <CustomButton onPress={handlePress}>Confirm address</CustomButton>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -93,7 +116,7 @@ export default AddressScreen;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
   },
   textInput: {
     borderRadius: 16,

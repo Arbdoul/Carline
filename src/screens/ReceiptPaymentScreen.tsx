@@ -10,6 +10,8 @@ import {
 import React from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { UnistylesRuntime } from "react-native-unistyles";
+import CustomButton from "../ui/CustomButton";
 
 const ReceiptPaymentScreen = () => {
   const { styles, theme } = useStyles(stylesheet);
@@ -98,7 +100,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   innerContainer: {
     flex: 2,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray900
+        : theme.colors.white,
   },
   receipt: {
     flex: 1,
@@ -107,7 +112,10 @@ const stylesheet = createStyleSheet((theme) => ({
     left: 24,
     right: 24,
     //minHeight: 667,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.white,
     height: 662,
     top: 8,
   },
@@ -120,7 +128,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   productName: {
     ...theme.typography.bodyXLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   productReceipt: {
     ...theme.typography.bodySmall.medium,
@@ -130,7 +141,10 @@ const stylesheet = createStyleSheet((theme) => ({
     borderWidth: 0.8,
     marginHorizontal: 24,
     marginTop: 16,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
   },
   statusandPaymentContainer: {
     marginHorizontal: 24,
@@ -155,12 +169,18 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   paymentMethodText: {
     ...theme.typography.bodySmall.medium,
-    color: theme.colors.gray500,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray500,
     paddingTop: 16,
   },
   addressText: {
     ...theme.typography.bodySmall.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
     paddingTop: 16,
   },
   total: {
@@ -173,16 +193,24 @@ const stylesheet = createStyleSheet((theme) => ({
     bottom: 16,
     left: 24,
     right: 24,
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.white,
     color: theme.colors.primary,
   },
   btn: {
-    backgroundColor: theme.colors.white,
+    backgroundColor:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.white,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: theme.colors.primary,
     paddingHorizontal: 16,
     paddingVertical: 15,
+    marginBottom: 23,
+    marginHorizontal: 20,
     alignItems: "center",
   },
   btnText: {

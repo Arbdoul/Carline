@@ -7,7 +7,11 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   IconEdit,
   IconCheckbox,
@@ -64,7 +68,14 @@ const PaymentScreen = ({ navigation }: any) => {
         <View>
           <View style={styles.expiryIcon}>
             <Text style={styles.lebelText}>Expiry data</Text>
-            <IconQuestionMark size={16} />
+            <IconQuestionMark
+              size={16}
+              color={
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.gray500
+                  : theme.colors.gray400
+              }
+            />
           </View>
           <View style={styles.date}>
             <TextInput
@@ -76,7 +87,14 @@ const PaymentScreen = ({ navigation }: any) => {
         <View>
           <View style={styles.expiryIcon}>
             <Text style={styles.lebelText}>CVC</Text>
-            <IconQuestionMark size={16} />
+            <IconQuestionMark
+              size={16}
+              color={
+                UnistylesRuntime.themeName === "dark"
+                  ? theme.colors.gray500
+                  : theme.colors.gray400
+              }
+            />
           </View>
           <View style={styles.cvc}>
             <TextInput
@@ -96,14 +114,20 @@ const PaymentScreen = ({ navigation }: any) => {
         </View>
       </View>
       <View style={styles.termsContainer}>
-        <IconCheckbox />
+        <IconCheckbox
+          color={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.gray500
+              : theme.colors.gray400
+          }
+        />
         <Text style={styles.terms}>
           I agree with <Text style={styles.generalTerm}> general terms </Text>
           and <Text style={styles.generalTerm}>conditions</Text>
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton onPress={handlePress}>Continue</CustomButton>
+        <CustomButton onPress={handlePress}>Confirm Payment</CustomButton>
       </View>
     </View>
   );
@@ -114,7 +138,7 @@ export default PaymentScreen;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
   },
   paymentMethod: {
     marginTop: 16,
@@ -124,7 +148,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   paymentMethodText: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   paymentMethodIcon: {
     flexDirection: "row",
@@ -140,10 +167,13 @@ const stylesheet = createStyleSheet((theme) => ({
     justifyContent: "space-between",
     marginHorizontal: 24,
     marginTop: 16,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 16,
     padding: 16,
-    backgroundColor: theme.colors.secondary,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.secondary,
   },
   cardHeaderText: {
     ...theme.typography.bodyMedium.bold,
@@ -160,11 +190,17 @@ const stylesheet = createStyleSheet((theme) => ({
     marginHorizontal: 24,
     borderBottomWidth: 1,
     marginTop: 24,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
   },
   lebelText: {
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   cardNumber: {
     flexDirection: "row",
@@ -172,7 +208,10 @@ const stylesheet = createStyleSheet((theme) => ({
     borderRadius: 16,
     marginTop: 8,
     padding: 16,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
   },
   cardInputContainer: {
     marginHorizontal: 24,
@@ -194,14 +233,20 @@ const stylesheet = createStyleSheet((theme) => ({
     marginTop: 8,
     padding: 16,
     borderRadius: 16,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
     width: 157.5,
   },
   cvc: {
     marginTop: 8,
     padding: 16,
     borderRadius: 16,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
     width: 157.5,
   },
   buttonContainer: {

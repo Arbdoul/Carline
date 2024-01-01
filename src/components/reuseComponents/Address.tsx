@@ -7,7 +7,11 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import React, { useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { IconCheckbox } from "tabler-icons-react-native";
 
 interface ImageProp {
@@ -45,7 +49,14 @@ const Address = ({ header, address, address1 }: any) => {
               onPressIn={handlePressIn}
               style={[active ? styles.iconActive : null]}
             >
-              <IconCheckbox size={16} />
+              <IconCheckbox
+                size={16}
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray700
+                    : theme.colors.gray200
+                }
+              />
             </Pressable>
           </View>
           <View>
@@ -75,13 +86,19 @@ const stylesheet = createStyleSheet((theme) => ({
     marginTop: 24,
     borderRadius: 16,
     padding: 16,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     borderWidth: 1,
   },
 
   homeHeaderText: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   homeBodyText: {
     ...theme.typography.bodySmall.medium,

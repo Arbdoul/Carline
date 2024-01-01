@@ -8,7 +8,11 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { ImageSourcePropType } from "react-native";
 import { FlatGrid, SimpleGrid } from "react-native-super-grid";
 
@@ -68,12 +72,6 @@ const Brands = () => {
       description: "Audi",
     },
   ];
-  const half = Math.ceil(brands.length / 2);
-  const brandColumns = [brands.slice(0, half), brands.slice(half)];
-
-  const handlePressed = (brandId: number) => {
-    setSelectedBrand(brandId);
-  };
 
   return (
     <SimpleGrid
@@ -83,7 +81,10 @@ const Brands = () => {
       renderItem={({ item }) => (
         <View
           style={{
-            borderColor: theme.colors.gray300,
+            borderColor:
+              UnistylesRuntime.themeName === "dark"
+                ? theme.colors.gray800
+                : theme.colors.gray300,
             borderWidth: 1,
             borderRadius: 16,
             alignItems: "center",
@@ -92,7 +93,7 @@ const Brands = () => {
           }}
         >
           <Image source={item.icon} />
-          <Text>{item.description}</Text>
+          <Text style={styles.description}>{item.description}</Text>
         </View>
       )}
     />
@@ -116,7 +117,6 @@ const stylesheet = createStyleSheet((theme) => ({
     height: 104,
     borderRadius: 16,
     borderWidth: 1,
-    // borderColor: theme.colors.primary,
     padding: 16,
     marginBottom: 10,
     marginHorizontal: 24,
@@ -129,5 +129,12 @@ const stylesheet = createStyleSheet((theme) => ({
   selectedBrand: {
     borderColor: theme.colors.primary,
     borderWidth: 1,
+  },
+  description: {
+    ...theme.typography.bodySmall.bold,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.white
+        : theme.colors.gray900,
   },
 }));

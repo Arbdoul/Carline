@@ -1,4 +1,8 @@
-import { useStyles, createStyleSheet } from "react-native-unistyles";
+import {
+  useStyles,
+  createStyleSheet,
+  UnistylesRuntime,
+} from "react-native-unistyles";
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 import * as Font from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
@@ -7,39 +11,48 @@ import Brands from "../components/Brands";
 import CustomButton from "../ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "../components/screen";
 
 const BrandScreen = () => {
   const navigation = useNavigation<any>();
   const { styles, theme } = useStyles(stylesheet);
   return (
-    <SafeAreaView style={styles.safeAreacontainer}>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <View>
-            <AntDesign name="arrowleft" size={24} color="black" />
-          </View>
-          <Pressable>
-            <Text style={styles.pressedText}>Skip</Text>
-          </Pressable>
+    <Screen
+      contentContainerStyle={{ flex: 1 }}
+      backgroundColor={theme.colors.background}
+      statusBarProps={{
+        backgroundColor: theme.colors.background,
+        barStyle:
+          UnistylesRuntime?.themeName === "dark"
+            ? "light-content"
+            : "dark-content",
+      }}
+    >
+      <View style={styles.headerContainer}>
+        <View>
+          <AntDesign name="arrowleft" size={24} color="black" />
         </View>
-        <ScrollView style={styles.scrollViewContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Which brand of car do you prefer?</Text>
-            <Text style={styles.description}>
-              Select all that you are intrested in
-            </Text>
-          </View>
-          <View style={styles.brandContainer}>
-            <Brands />
-          </View>
-        </ScrollView>
-        <View style={styles.buttonContainer}>
-          <CustomButton onPress={() => navigation.navigate("HomeScreen")}>
-            Finish
-          </CustomButton>
-        </View>
+        <Pressable>
+          <Text style={styles.pressedText}>Skip</Text>
+        </Pressable>
       </View>
-    </SafeAreaView>
+      <ScrollView style={styles.scrollViewContainer}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Which brand of car do you prefer?</Text>
+          <Text style={styles.description}>
+            Select all that you are intrested in
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Brands />
+        </View>
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <CustomButton onPress={() => navigation.navigate("HomeScreen")}>
+          Finish
+        </CustomButton>
+      </View>
+    </Screen>
   );
 };
 
@@ -51,10 +64,14 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.background,
   },
   title: {
     ...theme.typography.h4,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   description: {
     ...theme.typography.bodyLarge.medium,

@@ -20,7 +20,7 @@ import {
   IconArrowNarrowLeft,
 } from "tabler-icons-react-native";
 import LocationScreen from "../components/Home/LocationScreen";
-import { useStyles } from "react-native-unistyles";
+import { UnistylesRuntime, useStyles } from "react-native-unistyles";
 import AllCarRecommendation from "../components/Home/AllCarRecommendation";
 import CarDetailScreen from "../screens/CarDetailScreen";
 import PaymentScreen from "../screens/PaymentScreen";
@@ -48,7 +48,7 @@ function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: "white",
+          backgroundColor: theme.colors.background,
           paddingTop: 8,
           height: 64,
           //   paddingBottom: 8,
@@ -229,7 +229,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -244,7 +244,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -259,7 +259,7 @@ const RootNavigation = () => {
             ...theme.typography.bodyXLarge.bold,
           },
           headerStyle: {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors.background,
           },
         }}
       />
@@ -274,7 +274,7 @@ const RootNavigation = () => {
 
           // ),
           headerTitleStyle: {
-            ...theme.typography.bodyXLarge.bold,
+            color: theme.colors.primary,
           },
           headerStyle: {
             backgroundColor: theme.colors.primary,

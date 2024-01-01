@@ -7,7 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import {
   IconBrandMastercard,
   IconCheckbox,
@@ -44,7 +48,13 @@ const PaymentMethodScreen = () => {
               <Text style={styles.text}>Credit/Debit card</Text>
             </View>
             <View>
-              <IconCheckbox />
+              <IconCheckbox
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray500
+                    : theme.colors.gray700
+                }
+              />
             </View>
           </View>
         </View>
@@ -55,7 +65,13 @@ const PaymentMethodScreen = () => {
               <Text style={styles.text}>Paypal</Text>
             </View>
             <View>
-              <IconCheckbox />
+              <IconCheckbox
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray500
+                    : theme.colors.gray700
+                }
+              />
             </View>
           </View>
         </View>
@@ -66,7 +82,13 @@ const PaymentMethodScreen = () => {
               <Text style={styles.text}>Apple pay</Text>
             </View>
             <View>
-              <IconCheckbox />
+              <IconCheckbox
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray500
+                    : theme.colors.gray700
+                }
+              />
             </View>
           </View>
         </View>
@@ -77,7 +99,13 @@ const PaymentMethodScreen = () => {
               <Text style={styles.text}>Google pay</Text>
             </View>
             <View>
-              <IconCheckbox />
+              <IconCheckbox
+                color={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray500
+                    : theme.colors.gray700
+                }
+              />
             </View>
           </View>
         </View>
@@ -94,7 +122,7 @@ export default PaymentMethodScreen;
 const stylesheet = createStyleSheet((theme) => ({
   rootContainer: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background,
     //marginBottom: 100,
   },
   cardContainer: {
@@ -117,7 +145,10 @@ const stylesheet = createStyleSheet((theme) => ({
     borderRadius: 16,
     borderWidth: 1,
     marginHorizontal: 24,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
   },
   iconandcardContainer: {
     flexDirection: "row",
@@ -127,7 +158,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   text: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   buttonContainer: {
     position: "absolute",

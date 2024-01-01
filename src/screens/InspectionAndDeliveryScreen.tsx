@@ -113,12 +113,18 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   vehicleInspectionHeader: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   vehicleInpection: {
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     marginTop: 16,
     marginHorizontal: 24,
     paddingHorizontal: 20,
@@ -152,12 +158,18 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   price: {
     ...theme.typography.h3,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
     marginTop: 16,
   },
   line: {
     borderTopWidth: 1,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray200,
     marginTop: 16,
     paddingBottom: 16,
     paddingTop: 16,
@@ -166,7 +178,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   seeDetails: {
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
   },
   adressContainer: {
     flexDirection: "row",
@@ -197,7 +212,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   addressValue: {
     ...theme.typography.bodyMedium.bold,
-    color: theme.colors.secondary,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.secondary,
   },
   buttonContainer: {
     position: "absolute",
@@ -211,15 +229,24 @@ const stylesheet = createStyleSheet((theme) => ({
     marginTop: 24,
     marginHorizontal: 20,
     padding: 16,
-    backgroundColor: theme.colors.gray50,
+    backgroundColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray800
+        : theme.colors.gray50,
   },
   orderSummary: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.gray900,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.gray900,
     borderBottomWidth: 1,
     paddingBottom: 12,
     marginBottom: 12,
-    borderColor: theme.colors.gray200,
+    borderColor:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.gray700
+        : theme.colors.gray200,
   },
   total: {
     ...theme.typography.bodyLarge.bold,
