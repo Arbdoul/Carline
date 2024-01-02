@@ -17,18 +17,18 @@ import { IconDots } from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
 
-const Onbording = ({ navigation }: any) => {
+const OnbordingOne = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
 
   const handlePress = () => {
-    navigation.navigate("OnbordingOne");
+    navigation.navigate("OnbordingTwo");
   };
   return (
     <Screen
-      // backgroundColor={theme.colors.background}
+      backgroundColor={theme.colors.primary}
       contentContainerStyle={{ flex: 1 }}
       statusBarProps={{
-        backgroundColor: theme.colors.gray900,
+        backgroundColor: theme.colors.primary,
         barStyle:
           UnistylesRuntime?.themeName === "dark"
             ? "light-content"
@@ -39,11 +39,7 @@ const Onbording = ({ navigation }: any) => {
       //   flex: 1,
       // }}
     >
-      <ImageBackground
-        resizeMode="cover"
-        style={{ flex: 1 }}
-        source={require("../../../assets/images/onbording/onbording.png")}
-      >
+      <View style={{ flex: 1 }}>
         <View style={styles.headerContainer}>
           <View>
             <IconDots size={24} color="white" />
@@ -54,24 +50,47 @@ const Onbording = ({ navigation }: any) => {
         </View>
 
         <View style={styles.textContainer}>
-          <Text style={styles.onBoardHead}>Find the best car</Text>
-          <Text style={styles.onBoardHead}>without headaches</Text>
+          <Text style={styles.onBoardHead}>Choose car right</Text>
+          <Text style={styles.onBoardHead}>for you</Text>
 
           <Text style={styles.onBoardbody}>
-            You choose your car online. We inspect it
+            Answer a few quick questions to find
           </Text>
-          <Text style={styles.onBoardbody}>and deliver it.</Text>
+          <Text style={styles.onBoardbody}>the right car for you.</Text>
         </View>
-
+        <View>
+          <Image
+            style={{ width: 354, height: 340, marginTop: 32 }}
+            source={require("../../../assets/images/onbording/onbording1.png")}
+          />
+        </View>
         <View style={styles.buttonContainer}>
-          <CustomButton onPress={handlePress}>Get Started</CustomButton>
+          <Pressable
+            style={{
+              backgroundColor: theme.colors.white,
+              paddingHorizontal: 16,
+              paddingVertical: 15,
+              borderRadius: 16,
+              alignItems: "center",
+            }}
+            onPress={handlePress}
+          >
+            <Text
+              style={{
+                ...theme.typography.bodyLarge.bold,
+                color: theme.colors.primary,
+              }}
+            >
+              Get Started
+            </Text>
+          </Pressable>
         </View>
-      </ImageBackground>
+      </View>
     </Screen>
   );
 };
 
-export default Onbording;
+export default OnbordingOne;
 
 const stylesheet = createStyleSheet((theme) => ({
   headerContainer: {
@@ -86,7 +105,7 @@ const stylesheet = createStyleSheet((theme) => ({
     fontWeight: "700",
     fontSize: theme.typography.bodyLarge.bold.fontSize,
     lineHeight: 26.4,
-    color: theme.colors.primary,
+    color: theme.colors.gray50,
   },
   onBoardHead: {
     ...theme.typography.h3,

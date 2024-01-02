@@ -1,8 +1,8 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 // import { UnistylesTheme } from "react-native-unistyles";
 import HomeScreen from "./src/screens/BrandScreen";
 import { RootNavigator } from "./src/navigation/RootNavigation";
@@ -10,9 +10,14 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import "./src/theme";
 import { useLoadSelectedTheme } from "./src/core";
+import SplashScreen from "react-native-splash-screen";
 
 export default function App() {
   useLoadSelectedTheme();
+
+  useEffect(() => {
+    if (Platform.OS === "android") SplashScreen.hide();
+  }, []);
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>

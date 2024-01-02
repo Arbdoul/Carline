@@ -37,6 +37,9 @@ import Vouchers from "../components/profile/Vouchers";
 import Settings from "../components/profile/Settings";
 import LinkAccount from "../components/profile/LinkAccount";
 import { useSelectedTheme } from "../core";
+import Onbording from "../components/onbording/Onbording";
+import OnbordingOne from "../components/onbording/OnbordingOne";
+import OnbordingTwo from "../components/onbording/OnbordingTwo";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -145,6 +148,36 @@ const RootNavigation = () => {
         animation: "none",
       }}
     >
+      <Stack.Screen
+        name="Onbording"
+        component={Onbording}
+        options={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: theme.colors.gray800,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="OnbordingOne"
+        component={OnbordingOne}
+        options={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: theme.colors.gray800,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="OnbordingTwo"
+        component={OnbordingTwo}
+        options={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: theme.colors.gray800,
+          },
+        }}
+      />
       <Stack.Screen
         name="BrandScreen"
         component={BrandScreen}
