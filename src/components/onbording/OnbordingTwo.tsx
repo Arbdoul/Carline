@@ -6,7 +6,7 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import {
   UnistylesRuntime,
@@ -16,9 +16,11 @@ import {
 import { IconDots } from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
+import Button from "./Button";
 
-const OnbordingTwo = ({ navigation }: any) => {
+const OnbordingTwo = ({ navigation, borderColor }: any) => {
   const { styles, theme } = useStyles(stylesheet);
+  const [textColor, setTextColor] = useState();
 
   const handlePress = () => {
     navigation.navigate("OnbordingTwo");
@@ -33,20 +35,15 @@ const OnbordingTwo = ({ navigation }: any) => {
           UnistylesRuntime?.themeName === "dark"
             ? "light-content"
             : "dark-content",
-        //  barStyle: `${UnistylesRuntime?.themeName ?? "dark"}-content`,
       }}
-      // style={{
-      //   flex: 1,
-      // }}
     >
       <View style={{ flex: 1 }}>
         <View style={styles.headerContainer}>
-          <View>
-            <IconDots size={24} color="white" />
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <Image
+              source={require("../../../assets/images/onbording/logo.png")}
+            />
           </View>
-          <Pressable>
-            <Text style={styles.pressedText}>Skip</Text>
-          </Pressable>
         </View>
 
         <View style={styles.textContainer}>
@@ -62,31 +59,16 @@ const OnbordingTwo = ({ navigation }: any) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <CustomButton onPress={handlePress}>Get Started</CustomButton>
-          <CustomButton onPress={handlePress}>Get Started</CustomButton>
-          <CustomButton onPress={handlePress}>Get Started</CustomButton>
+          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+            Continue with Email
+          </Button>
+          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+            Continue with Google
+          </Button>
+          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+            Continue with Apple
+          </Button>
         </View>
-        {/* <View style={styles.buttonContainer}>
-          <Pressable
-            style={{
-              backgroundColor: theme.colors.white,
-              paddingHorizontal: 16,
-              paddingVertical: 15,
-              borderRadius: 16,
-              alignItems: "center",
-            }}
-            onPress={handlePress}
-          >
-            <Text
-              style={{
-                ...theme.typography.bodyLarge.bold,
-                color: theme.colors.primary,
-              }}
-            >
-              Get Started
-            </Text>
-          </Pressable>
-        </View> */}
       </View>
     </Screen>
   );
@@ -126,5 +108,6 @@ const stylesheet = createStyleSheet((theme) => ({
     bottom: 16,
     left: 24,
     right: 24,
+    marginTop: 16,
   },
 }));

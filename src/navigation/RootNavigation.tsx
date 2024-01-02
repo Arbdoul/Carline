@@ -40,6 +40,7 @@ import { useSelectedTheme } from "../core";
 import Onbording from "../components/onbording/Onbording";
 import OnbordingOne from "../components/onbording/OnbordingOne";
 import OnbordingTwo from "../components/onbording/OnbordingTwo";
+import Slides from "../components/onbording/Slides";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -149,8 +150,8 @@ const RootNavigation = () => {
       }}
     >
       <Stack.Screen
-        name="Onbording"
-        component={Onbording}
+        name="Slides"
+        component={Slides}
         options={{
           headerShown: false,
           headerStyle: {

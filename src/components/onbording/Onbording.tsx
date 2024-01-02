@@ -16,12 +16,13 @@ import {
 import { IconDots } from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
+import { useNavigation } from "@react-navigation/native";
 
-const Onbording = ({ navigation }: any) => {
+const Onbording = () => {
   const { styles, theme } = useStyles(stylesheet);
-
+  const navigation = useNavigation<any>();
   const handlePress = () => {
-    navigation.navigate("OnbordingOne");
+    navigation.navigate("OnbordingTwo");
   };
   return (
     <Screen
