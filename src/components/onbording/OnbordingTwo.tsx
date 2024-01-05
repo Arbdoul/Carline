@@ -13,17 +13,29 @@ import {
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
-import { IconDots } from "tabler-icons-react-native";
+import {
+  IconBrandApple,
+  IconBrandGoogle,
+  IconMail,
+} from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
 import Button from "./Button";
+import { useNavigation } from "@react-navigation/native";
 
-const OnbordingTwo = ({ navigation, borderColor }: any) => {
+const OnbordingTwo = ({ icon }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const [textColor, setTextColor] = useState();
+  const [isEmailPressed, setIsEmailPressed] = useState(0);
+  const [isGooglePressed, setIsGooglePressed] = useState(0);
+  const [isApplePressed, setIsApplePressed] = useState(0);
+
+  // const [pressed, setPressed] = useState<any>();
+
+  const navigation = useNavigation<any>();
 
   const handlePress = () => {
-    navigation.navigate("OnbordingTwo");
+    navigation.navigate("SignIn");
   };
   return (
     <Screen
@@ -59,13 +71,52 @@ const OnbordingTwo = ({ navigation, borderColor }: any) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+          <Button
+            icon={<IconMail />}
+            borderColor={theme.colors.gray400}
+            borderWidth={1}
+            onPress={handlePress}
+            onPressIn={() => {
+              setIsEmailPressed(1);
+            }}
+            onPressOut={() => setIsEmailPressed(0)}
+            color={isEmailPressed ? theme.colors.primary : theme.colors.white}
+            backgroundColor={
+              isEmailPressed ? theme.colors.white : theme.colors.primary
+            }
+          >
             Continue with Email
           </Button>
-          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+          <Button
+            icon={<IconBrandGoogle />}
+            borderColor={theme.colors.gray400}
+            borderWidth={1}
+            onPress={handlePress}
+            onPressIn={() => {
+              setIsGooglePressed(2);
+            }}
+            onPressOut={() => setIsGooglePressed(0)}
+            color={isGooglePressed ? theme.colors.primary : theme.colors.white}
+            backgroundColor={
+              isGooglePressed ? theme.colors.white : theme.colors.primary
+            }
+          >
             Continue with Google
           </Button>
-          <Button borderColor={theme.colors.gray50} onPress={handlePress}>
+          <Button
+            icon={<IconBrandApple />}
+            borderColor={theme.colors.gray400}
+            borderWidth={1}
+            onPress={handlePress}
+            onPressIn={() => {
+              setIsApplePressed(3);
+            }}
+            onPressOut={() => setIsApplePressed(0)}
+            color={isApplePressed ? theme.colors.primary : theme.colors.white}
+            backgroundColor={
+              isApplePressed ? theme.colors.white : theme.colors.primary
+            }
+          >
             Continue with Apple
           </Button>
         </View>

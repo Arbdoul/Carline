@@ -41,6 +41,9 @@ import Onbording from "../components/onbording/Onbording";
 import OnbordingOne from "../components/onbording/OnbordingOne";
 import OnbordingTwo from "../components/onbording/OnbordingTwo";
 import Slides from "../components/onbording/Slides";
+import SignIn from "../components/auth/SignIn";
+import SignUp from "../components/auth/SignUp";
+import ResetPassword from "../components/auth/ResetPassword";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -176,6 +179,39 @@ const RootNavigation = () => {
           headerShown: false,
           headerStyle: {
             backgroundColor: theme.colors.gray800,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{
+          // headerShown: false,
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{
+          // headerShown: false,
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{
+          // headerShown: false,
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: theme.colors.background,
           },
         }}
       />
