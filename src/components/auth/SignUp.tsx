@@ -10,14 +10,20 @@ import {
 import Button from "../onbording/Button";
 import {
   IconBrandApple,
+  IconBrandGoogle,
   IconLock,
   IconMail,
   IconUser,
 } from "tabler-icons-react-native";
 import { Screen } from "../screen";
+import CustomButton from "../../ui/CustomButton";
 const SignUp = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const { control, handleSubmit } = useForm();
+
+  const onSignUpPressed = () => {
+    navigation.navigate("SignIn");
+  };
 
   const handleSignIn = () => {
     navigation.navigate("SignIn");
@@ -71,8 +77,9 @@ const SignUp = ({ navigation }: any) => {
         <Text style={{ color: theme.colors.primary }}> Privacy Policy.</Text>
       </Text>
 
-      <View>
-        <Button
+      <View style={{ marginHorizontal: 24, marginTop: 16 }}>
+        <CustomButton
+          onPress={handleSubmit(onSignUpPressed)}
           backgroundColor={
             UnistylesRuntime.themeName === "dark"
               ? theme.colors.primary
@@ -87,44 +94,61 @@ const SignUp = ({ navigation }: any) => {
           alignItems={"center"}
         >
           Sign Up
-        </Button>
-        <Button
-          icon={<IconBrandApple />}
-          borderColor={theme.colors.gray50}
-          backgroundColor={
-            UnistylesRuntime.themeName === "dark"
-              ? theme.colors.gray800
-              : theme.colors.gray50
-          }
-          color={
-            UnistylesRuntime.themeName === "dark"
-              ? theme.colors.gray50
-              : theme.colors.gray900
-          }
-          //onPress={handlePress}
-        >
-          Continue with Google
-        </Button>
-        <Button
-          icon={<IconBrandApple />}
-          borderColor={theme.colors.gray50}
-          // onPressIn={() => setIsApplePressed(1)}
-          // onPressOut={() => setIsApplePressed(0)}
-          backgroundColor={
-            UnistylesRuntime.themeName === "dark"
-              ? theme.colors.gray800
-              : theme.colors.gray50
-          }
-          color={
-            UnistylesRuntime.themeName === "dark"
-              ? theme.colors.gray50
-              : theme.colors.gray900
-          }
-          //onPress={handlePress}
-        >
-          Continue with Apple
-        </Button>
+        </CustomButton>
       </View>
+      <Button
+        icon={
+          <IconBrandGoogle
+            color={
+              UnistylesRuntime.themeName === "dark"
+                ? theme.colors.white
+                : theme.colors.gray900
+            }
+          />
+        }
+        borderColor={theme.colors.gray50}
+        backgroundColor={
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray50
+        }
+        color={
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray50
+            : theme.colors.gray900
+        }
+        //onPress={handlePress}
+      >
+        Continue with Google
+      </Button>
+      <Button
+        icon={
+          <IconBrandApple
+            color={
+              UnistylesRuntime.themeName === "dark"
+                ? theme.colors.white
+                : theme.colors.gray900
+            }
+          />
+        }
+        borderColor={theme.colors.gray50}
+        // onPressIn={() => setIsApplePressed(1)}
+        // onPressOut={() => setIsApplePressed(0)}
+        backgroundColor={
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray800
+            : theme.colors.gray50
+        }
+        color={
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray50
+            : theme.colors.gray900
+        }
+        //onPress={handlePress}
+      >
+        Continue with Apple
+      </Button>
+
       <View
         style={{
           flexDirection: "row",

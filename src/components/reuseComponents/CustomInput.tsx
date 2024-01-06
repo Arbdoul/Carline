@@ -16,7 +16,7 @@ const CustomInput = ({
   icon,
   rules = {},
 }: any) => {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
   return (
     <View>
       <Controller
@@ -44,6 +44,12 @@ const CustomInput = ({
                 placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
                 secureTextEntry={secureTextEntry}
+                style={{
+                  color:
+                    UnistylesRuntime.themeName === "dark"
+                      ? theme.colors.gray50
+                      : theme.colors.gray900,
+                }}
               />
             </View>
             {error && (
@@ -67,13 +73,7 @@ const stylesheet = createStyleSheet((theme) => ({
         ? theme.colors.gray800
         : theme.colors.gray50,
     borderRadius: 16,
-    // borderWidth: 1,
     paddingHorizontal: 16,
-    //borderColor: error && "red",
-    color:
-      UnistylesRuntime.themeName === "dark"
-        ? theme.colors.gray50
-        : theme.colors.gray900,
 
     marginTop: 16,
   },

@@ -52,10 +52,34 @@ const Button = ({
     //     </View>
     //   </View>
     // </Pressable>
-    <Pressable onPress={onPress} style={styles.btn}>
-      <View>{icon}</View>
-      <Text style={styles.btnText}>{children}</Text>
-    </Pressable>
+    <View
+      style={[
+        {
+          borderWidth: borderWidth,
+          borderColor: borderColor,
+          backgroundColor: backgroundColor,
+        },
+        styles.btn,
+      ]}
+    >
+      <View style={{}}>{icon}</View>
+      <Pressable
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        // onPressOut={() => setIsPressed(false)}
+        onPress={onPress}
+      >
+        <View
+          style={{
+            // flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={[{ color: color }, styles.btnText]}>{children}</Text>
+        </View>
+      </Pressable>
+    </View>
   );
 };
 
@@ -67,16 +91,20 @@ const stylesheet = createStyleSheet((theme) => ({
   },
 
   btn: {
-    backgroundColor: theme.colors.primary,
+    // backgroundColor: theme.colors.gray500,
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 15,
+    flexDirection: "row",
     alignItems: "center",
+    marginHorizontal: 24,
+    marginTop: 16,
   },
   btnText: {
     ...theme.typography.bodyLarge.bold,
-    color: "white",
+    // color: "white",
     lineHeight: 24,
+    marginLeft: 44,
   },
 
   // btn: {

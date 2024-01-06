@@ -122,23 +122,23 @@ const SignIn = ({ navigation }: any) => {
         </View>
       </View>
 
-      {/* <View style={{ marginHorizontal: 24 }}>
-        <CustomButton>Sign In</CustomButton>
-      </View> */}
-      <Button
-        onPress={handleSubmit(onSignPressed)}
-        onPressIn={() => setIsSignPressed(1)}
-        onPressOut={() => setIsSignPressed(0)}
-        style={{ textAlign: "center" }}
-        backgroundColor={
-          UnistylesRuntime.themeName === "dark"
-            ? theme.colors.primary
-            : theme.colors.gray50
-        }
-        color={isSignInPressed ? theme.colors.white : theme.colors.gray800}
-      >
-        Sign In
-      </Button>
+      <View style={{ marginHorizontal: 24, marginTop: 24 }}>
+        <CustomButton
+          onPress={handleSubmit(onSignPressed)}
+          onPressIn={() => setIsSignPressed(1)}
+          onPressOut={() => setIsSignPressed(0)}
+          style={{ textAlign: "center" }}
+          backgroundColor={
+            UnistylesRuntime.themeName === "dark"
+              ? theme.colors.primary
+              : theme.colors.gray50
+          }
+          color={isSignInPressed ? theme.colors.white : theme.colors.gray800}
+        >
+          Sign In
+        </CustomButton>
+      </View>
+
       <Button
         icon={
           <IconBrandGoogle

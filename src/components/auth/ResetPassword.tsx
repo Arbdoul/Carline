@@ -9,6 +9,7 @@ import Button from "../onbording/Button";
 import CustomInput from "../reuseComponents/CustomInput";
 import { useForm, Controller } from "react-hook-form";
 import { IconMail } from "tabler-icons-react-native";
+import CustomButton from "../../ui/CustomButton";
 
 const ResetPassword = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
@@ -17,6 +18,10 @@ const ResetPassword = ({ navigation }: any) => {
   const handleSignIn = () => {
     navigation.navigate("SignIn");
   };
+  const onResetPress = () => {
+    navigation.navigate("SignIn");
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View
@@ -62,18 +67,21 @@ const ResetPassword = ({ navigation }: any) => {
           control={control}
           name="email"
           placeholder="Email"
+          rules={{ required: "Email is required" }}
           placeholderTextColor={theme.colors.gray500}
           icon={<IconMail size={20} color={theme.colors.gray500} />}
         />
       </View>
-      <View style={{ marginTop: 161 }}>
-        <Button
+      <View style={{ marginTop: 161, marginHorizontal: 24 }}>
+        <CustomButton
+          onPress={handleSubmit(onResetPress)}
           backgroundColor={theme.colors.primary}
           color={theme.colors.white}
         >
           Reset Password
-        </Button>
-        <Button
+        </CustomButton>
+        <View style={{ marginTop: 16 }} />
+        <CustomButton
           backgroundColor={theme.colors.white}
           borderRadius={1}
           borderColor={theme.colors.white}
@@ -81,7 +89,7 @@ const ResetPassword = ({ navigation }: any) => {
           onPress={handleSignIn}
         >
           Return to Sign In
-        </Button>
+        </CustomButton>
       </View>
     </View>
   );

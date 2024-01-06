@@ -79,8 +79,8 @@ const OnbordingTwo = ({ icon }: any) => {
             onPressIn={() => {
               setIsEmailPressed(1);
             }}
-            onPressOut={() => setIsEmailPressed(0)}
             color={isEmailPressed ? theme.colors.primary : theme.colors.white}
+            onPressOut={() => setIsEmailPressed(0)}
             backgroundColor={
               isEmailPressed ? theme.colors.white : theme.colors.primary
             }
@@ -155,10 +155,6 @@ const stylesheet = createStyleSheet((theme) => ({
     marginTop: 32,
   },
   buttonContainer: {
-    position: "absolute",
-    bottom: 16,
-    left: 24,
-    right: 24,
     marginTop: 16,
   },
 }));
