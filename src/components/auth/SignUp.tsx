@@ -17,6 +17,7 @@ import {
 } from "tabler-icons-react-native";
 import { Screen } from "../screen";
 import CustomButton from "../../ui/CustomButton";
+import Buttons from "../onbording/Button";
 const SignUp = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const { control, handleSubmit } = useForm();
@@ -44,7 +45,7 @@ const SignUp = ({ navigation }: any) => {
           placeholderTextColor={theme.colors.gray500}
           control={control}
           rules={{ required: "name is required" }}
-          icon={<IconUser size={20} color={theme.colors.gray500} />}
+          left="bag-personal"
         />
         <CustomInput
           name="email"
@@ -53,6 +54,7 @@ const SignUp = ({ navigation }: any) => {
           control={control}
           rules={{ required: "email is required" }}
           icon={<IconMail size={20} color={theme.colors.gray500} />}
+          left="email"
         />
         <CustomInput
           name="password"
@@ -60,7 +62,8 @@ const SignUp = ({ navigation }: any) => {
           placeholderTextColor={theme.colors.gray500}
           control={control}
           rules={{ required: "password is required" }}
-          icon={<IconLock size={20} color={theme.colors.gray500} />}
+          right="eye-off-outline"
+          left="lock"
         />
       </View>
       <Text
@@ -96,7 +99,7 @@ const SignUp = ({ navigation }: any) => {
           Sign Up
         </CustomButton>
       </View>
-      <Button
+      <Buttons
         icon={
           <IconBrandGoogle
             color={
@@ -120,7 +123,7 @@ const SignUp = ({ navigation }: any) => {
         //onPress={handlePress}
       >
         Continue with Google
-      </Button>
+      </Buttons>
       <Button
         icon={
           <IconBrandApple
@@ -154,7 +157,10 @@ const SignUp = ({ navigation }: any) => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 60,
+          position: "absolute",
+          bottom: 16,
+          left: 24,
+          right: 24,
         }}
       >
         <Text
@@ -173,6 +179,7 @@ const SignUp = ({ navigation }: any) => {
             style={{
               ...theme.typography.bodyLarge.medium,
               color: theme.colors.primary,
+              marginLeft: 4,
             }}
           >
             Sign In

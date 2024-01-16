@@ -1,3 +1,5 @@
+const styles = StyleSheet.create({});
+
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import {
@@ -10,8 +12,9 @@ import CustomInput from "../reuseComponents/CustomInput";
 import { useForm, Controller } from "react-hook-form";
 import { IconMail } from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
+import { OtpInput } from "react-native-otp-entry";
 
-const ResetPassword = ({ navigation }: any) => {
+const VerificationCode = ({ navigation }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const { control, handleSubmit } = useForm();
 
@@ -19,7 +22,7 @@ const ResetPassword = ({ navigation }: any) => {
     navigation.navigate("SignIn");
   };
   const onResetPress = () => {
-    navigation.navigate("VerificationCode");
+    navigation.navigate("SignIn");
   };
 
   return (
@@ -31,7 +34,9 @@ const ResetPassword = ({ navigation }: any) => {
           marginTop: 48,
         }}
       >
-        <Image source={require("../../../assets/images/auth/reset.png")} />
+        <Image
+          source={require("../../../assets/images/auth/verification.png")}
+        />
       </View>
       <View
         style={{
@@ -50,7 +55,7 @@ const ResetPassword = ({ navigation }: any) => {
                 : theme.colors.gray900,
           }}
         >
-          Can't sign in?
+          Almost there!
         </Text>
         <Text
           style={{
@@ -58,18 +63,27 @@ const ResetPassword = ({ navigation }: any) => {
             color: theme.colors.gray500,
           }}
         >
-          Enter the email associated with your account, and Carline will send
-          you a link to reset your password.
+          Check your email inbox and input the verification code to verify your
+          account.
         </Text>
       </View>
-      <View style={{ marginHorizontal: 24 }}>
-        <CustomInput
-          control={control}
-          name="email"
-          placeholder="Email"
-          rules={{ required: "Email is required" }}
-          placeholderTextColor={theme.colors.gray500}
-          left="email"
+      <View style={{ marginHorizontal: 24, marginTop: 24 }}>
+        <OtpInput
+          numberOfDigits={5}
+          focusColor={theme.colors.primary}
+          focusStickBlinkingDuration={500}
+          onTextChange={(text) => console.log(text)}
+          onFilled={(text) => console.log(`OTP is ${text}`)}
+          theme={
+            {
+              //  containerStyle: styles.container,
+              //  inputsContainerStyle: styles.inputsContainer,
+              //  pinCodeContainerStyle: styles.pinCodeContainer,
+              //  pinCodeTextStyle: styles.pinCodeText,
+              //  focusStickStyle: styles.focusStick,
+              //  focusedPinCodeContainerStyle: styles.activePinCodeContainer
+            }
+          }
         />
       </View>
       <View style={{ marginTop: 161, marginHorizontal: 24 }}>
@@ -78,7 +92,7 @@ const ResetPassword = ({ navigation }: any) => {
           backgroundColor={theme.colors.primary}
           color={theme.colors.white}
         >
-          Reset Password
+          Continue
         </CustomButton>
         <View style={{ marginTop: 16 }} />
         <CustomButton
@@ -88,13 +102,13 @@ const ResetPassword = ({ navigation }: any) => {
           color={theme.colors.primary}
           onPress={handleSignIn}
         >
-          Return to Sign In
+          Resend code
         </CustomButton>
       </View>
     </View>
   );
 };
 
-export default ResetPassword;
+export default VerificationCode;
 
 const stylesheet = createStyleSheet((theme) => ({}));

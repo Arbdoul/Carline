@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   View,
-  TextInput,
   TouchableOpacity,
   Text,
   StyleSheet,
   Pressable,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { TextInput } from "react-native-paper";
+
+// import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Button from "../onbording/Button";
 import CustomInput from "../reuseComponents/CustomInput";
 import {
@@ -17,16 +18,17 @@ import {
   useStyles,
 } from "react-native-unistyles";
 import { Screen } from "../screen";
-import {
-  IconBrandApple,
-  IconBrandGoogle,
-  IconLock,
-  IconMail,
-} from "tabler-icons-react-native";
+// import {
+//   IconBrandApple,
+//   IconBrandGoogle,
+//   IconLock,
+//   IconMail,
+// } from "tabler-icons-react-native";
 import { AntDesign } from "@expo/vector-icons";
 import CustomButton from "../../ui/CustomButton";
-
+// import Icon from "react-native-ico-social-media";
 const SignIn = ({ navigation }: any) => {
+  //  const navigation = useNavigation<any>();
   const { styles, theme } = useStyles(stylesheet);
   const [isSignInPressed, setIsSignPressed] = useState(0);
   const [isGooglePressed, setIsGooglePressed] = useState(0);
@@ -43,12 +45,17 @@ const SignIn = ({ navigation }: any) => {
     navigation.navigate("BrandScreen");
     // Handle form submission
   };
-  const handleSignup = () => {
-    navigation.navigate("SignUp");
+  const handleSignup = (data: any) => {
+    //console.log(data);
+    navigation.replace("SignUp");
   };
 
   const handleReset = () => {
-    navigation.navigate("ResetPassword");
+    navigation.replace("ResetPassword");
+  };
+
+  const renderIcon = () => {
+    // navigation.navigate("ResetPassword");
   };
   return (
     <Screen
@@ -63,7 +70,7 @@ const SignIn = ({ navigation }: any) => {
       style={styles.container}
     >
       <View style={styles.headerContainer}>
-        <Text style={styles.signInTitle}>Sign In to Carline</Text>
+        <Text style={styles.signInTitle}>Sign in to Carline</Text>
         <Text style={styles.signInSubitle}>
           Welcome back! please enter your details
         </Text>
@@ -75,7 +82,8 @@ const SignIn = ({ navigation }: any) => {
           placeholderTextColor={theme.colors.gray500}
           control={control}
           rules={{ required: "email is required" }}
-          icon={<IconMail size={20} color={theme.colors.gray500} />}
+          // icon={<IconMail size={20} color={theme.colors.gray500} />}
+          left="mail"
         />
 
         <CustomInput
@@ -91,7 +99,9 @@ const SignIn = ({ navigation }: any) => {
               message: "Password should me minimum of 8 characters longrr",
             },
           }}
-          icon={<IconLock size={20} color={theme.colors.gray500} />}
+          // icon={<TextInput.Icon name="lock" size={24} color="black" />}
+          right="eye-off-outline"
+          left="lock"
         />
       </View>
       <View
@@ -99,6 +109,7 @@ const SignIn = ({ navigation }: any) => {
           flexDirection: "row",
           //justifyContent: "center",
           alignItems: "center",
+          gap: 4,
         }}
       >
         <View>
@@ -140,15 +151,7 @@ const SignIn = ({ navigation }: any) => {
       </View>
 
       <Button
-        icon={
-          <IconBrandGoogle
-            color={
-              UnistylesRuntime.themeName === "dark"
-                ? theme.colors.white
-                : theme.colors.gray900
-            }
-          />
-        }
+        // icon={<Icon name="google-icon" />}
         borderColor={theme.colors.gray50}
         backgroundColor={
           UnistylesRuntime.themeName === "dark"
@@ -198,7 +201,11 @@ const SignIn = ({ navigation }: any) => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 60,
+          gap: 4,
+          position: "absolute",
+          bottom: -150,
+          left: 24,
+          right: 24,
         }}
       >
         <Text
@@ -254,6 +261,7 @@ const stylesheet = createStyleSheet((theme) => ({
         ? theme.colors.gray400
         : theme.colors.gray500,
     ...theme.typography.bodyLarge.medium,
+    marginTop: 8,
   },
   inputContainer: {
     marginTop: 8,

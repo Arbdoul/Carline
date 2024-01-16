@@ -1,12 +1,22 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { Button, TextInput } from "react-native-paper";
+import { IconBrandGoogle } from "tabler-icons-react-native";
 
-const CustomButton = ({ children, onPress }: any) => {
-  const { styles } = useStyles(stylesheet);
+const CustomButton = ({ children, onPress, left }: any) => {
+  const { styles, theme } = useStyles(stylesheet);
   return (
-    <Pressable onPress={onPress} style={styles.btn}>
-      <Text style={styles.btnText}>{children}</Text>
+    <Pressable>
+      <Button
+        mode="contained"
+        onPress={onPress}
+        theme={{ roundness: 4 }}
+        contentStyle={{ paddingVertical: 8 }}
+        labelStyle={{ ...theme.typography.bodyLarge.bold }}
+      >
+        {children}
+      </Button>
     </Pressable>
   );
 };
@@ -21,7 +31,6 @@ const stylesheet = createStyleSheet((theme) => ({
   btn: {
     backgroundColor: theme.colors.primary,
     borderRadius: 16,
-    paddingHorizontal: 16,
     paddingVertical: 15,
     alignItems: "center",
   },

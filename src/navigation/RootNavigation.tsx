@@ -1,8 +1,12 @@
 import { Platform, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCachedResources } from "../theme/CatchedResources";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import {
+  DefaultTheme,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/BrandScreen";
 import Home from "../components/Home/Home";
@@ -44,6 +48,9 @@ import Slides from "../components/onbording/Slides";
 import SignIn from "../components/auth/SignIn";
 import SignUp from "../components/auth/SignUp";
 import ResetPassword from "../components/auth/ResetPassword";
+import VerificationCode from "../components/auth/VerificationCode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { storage } from "../core";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -142,6 +149,27 @@ const RootNavigation = () => {
   const isLoadingComplete = useCachedResources();
   const { theme } = useStyles();
 
+  const [viewedOnBoarding, setViewedOnBoarding] = useState(false);
+
+  const checkIfAlreadyViewed = async () => {
+    try {
+      const value = storage.getString("alreadyViewed");
+
+      if (!value) {
+        storage.set("alreadyViewed", "true");
+        setViewedOnBoarding(true);
+      } else {
+        setViewedOnBoarding(false);
+      }
+    } catch (error) {
+      console.error("Error reading or updating MMKV:", error);
+    }
+  };
+
+  useEffect(() => {
+    checkIfAlreadyViewed();
+  }, []);
+
   if (!isLoadingComplete) {
     return;
   }
@@ -152,36 +180,42 @@ const RootNavigation = () => {
         animation: "none",
       }}
     >
-      <Stack.Screen
-        name="Slides"
-        component={Slides}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: theme.colors.gray800,
-          },
-        }}
-      />
-      <Stack.Screen
-        name="OnbordingOne"
-        component={OnbordingOne}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: theme.colors.gray800,
-          },
-        }}
-      />
-      <Stack.Screen
-        name="OnbordingTwo"
-        component={OnbordingTwo}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: theme.colors.gray800,
-          },
-        }}
-      />
+      {viewedOnBoarding && (
+        <>
+          <Stack.Screen
+            name="Slides"
+            component={Slides}
+            options={{
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: theme.colors.gray800,
+              },
+            }}
+          />
+          <Stack.Screen
+            name="OnbordingOne"
+            component={OnbordingOne}
+            options={{
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: theme.colors.gray800,
+              },
+            }}
+          />
+
+          <Stack.Screen
+            name="OnbordingTwo"
+            component={OnbordingTwo}
+            options={{
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: theme.colors.gray800,
+              },
+            }}
+          />
+        </>
+      )}
+
       <Stack.Screen
         name="SignIn"
         component={SignIn}
@@ -193,6 +227,7 @@ const RootNavigation = () => {
           },
         }}
       />
+
       <Stack.Screen
         name="SignUp"
         component={SignUp}
@@ -207,6 +242,17 @@ const RootNavigation = () => {
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
+        options={{
+          // headerShown: false,
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="VerificationCode"
+        component={VerificationCode}
         options={{
           // headerShown: false,
           headerShadowVisible: false,
@@ -244,7 +290,15 @@ const RootNavigation = () => {
           headerTitle: "Car Recommendations",
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          headerTitleStyle: {},
+          headerTitleStyle: {
+            color:
+              UnistylesRuntime.themeName === "dark"
+                ? theme.colors.gray50
+                : theme.colors.gray900,
+          },
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
         }}
       />
       <Stack.Screen
@@ -462,6 +516,7 @@ export default RootNavigation;
 export const RootNavigator = () => {
   const { styles, theme } = useStyles();
   const { selectedTheme } = useSelectedTheme();
+
   const LightTheme = {
     ...DefaultTheme,
     colors: {

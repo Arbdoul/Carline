@@ -1,5 +1,49 @@
 import { UnistylesRegistry } from "react-native-unistyles";
 // theme.ts
+export const paperTheme = {
+  colors: {
+    primary: "rgb(65, 57, 255)",
+    onPrimary: "rgb(255, 255, 255)",
+    primaryContainer: "rgb(225, 223, 255)",
+    onPrimaryContainer: "rgb(9, 0, 107)",
+    secondary: "rgb(93, 92, 114)",
+    onSecondary: "rgb(255, 255, 255)",
+    secondaryContainer: "rgb(226, 224, 249)",
+    onSecondaryContainer: "rgb(26, 26, 44)",
+    tertiary: "rgb(121, 83, 105)",
+    onTertiary: "rgb(255, 255, 255)",
+    tertiaryContainer: "rgb(255, 216, 236)",
+    onTertiaryContainer: "rgb(47, 17, 36)",
+    error: "rgb(186, 26, 26)",
+    onError: "rgb(255, 255, 255)",
+    errorContainer: "rgb(255, 218, 214)",
+    onErrorContainer: "rgb(65, 0, 2)",
+    background: "rgb(255, 251, 255)",
+    onBackground: "rgb(28, 27, 31)",
+    surface: "rgb(255, 251, 255)",
+    onSurface: "rgb(28, 27, 31)",
+    surfaceVariant: "rgb(228, 225, 236)",
+    onSurfaceVariant: "rgb(71, 70, 79)",
+    outline: "rgb(119, 118, 128)",
+    outlineVariant: "rgb(200, 197, 208)",
+    shadow: "rgb(0, 0, 0)",
+    scrim: "rgb(0, 0, 0)",
+    inverseSurface: "rgb(49, 48, 52)",
+    inverseOnSurface: "rgb(243, 239, 244)",
+    inversePrimary: "rgb(193, 193, 255)",
+    elevation: {
+      level0: "transparent",
+      level1: "rgb(246, 241, 255)",
+      level2: "rgb(240, 236, 255)",
+      level3: "rgb(234, 230, 255)",
+      level4: "rgb(232, 228, 255)",
+      level5: "rgb(228, 224, 255)",
+    },
+    surfaceDisabled: "rgba(28, 27, 31, 0.12)",
+    onSurfaceDisabled: "rgba(28, 27, 31, 0.38)",
+    backdrop: "rgba(48, 48, 56, 0.4)",
+  },
+};
 
 const colors = {
   // primary

@@ -22,8 +22,9 @@ import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
 import Button from "./Button";
 import { useNavigation } from "@react-navigation/native";
+import Buttons from "./Button";
 
-const OnbordingTwo = ({ icon }: any) => {
+const OnbordingTwo = () => {
   const { styles, theme } = useStyles(stylesheet);
   const [textColor, setTextColor] = useState();
   const [isEmailPressed, setIsEmailPressed] = useState(0);
@@ -71,7 +72,7 @@ const OnbordingTwo = ({ icon }: any) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
+          <Buttons
             icon={<IconMail />}
             borderColor={theme.colors.gray400}
             borderWidth={1}
@@ -86,9 +87,14 @@ const OnbordingTwo = ({ icon }: any) => {
             }
           >
             Continue with Email
-          </Button>
-          <Button
-            icon={<IconBrandGoogle />}
+          </Buttons>
+          <Buttons
+            icon={
+              <Image
+                // style={{ paddingVertical: 16 }}
+                source={require("../../../assets/images/auth/google.png")}
+              />
+            }
             borderColor={theme.colors.gray400}
             borderWidth={1}
             onPress={handlePress}
@@ -102,8 +108,8 @@ const OnbordingTwo = ({ icon }: any) => {
             }
           >
             Continue with Google
-          </Button>
-          <Button
+          </Buttons>
+          <Buttons
             icon={<IconBrandApple />}
             borderColor={theme.colors.gray400}
             borderWidth={1}
@@ -118,7 +124,7 @@ const OnbordingTwo = ({ icon }: any) => {
             }
           >
             Continue with Apple
-          </Button>
+          </Buttons>
         </View>
       </View>
     </Screen>

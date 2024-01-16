@@ -22,36 +22,6 @@ const Button = ({
   const { styles, theme } = useStyles(stylesheet);
   //  const [isPressed, setIsPressed] = useState(false);
   return (
-    // <Pressable
-    //   onPress={onPress}
-    //   onPressIn={onPressIn}
-    //   onPressOut={onPressOut}
-    //   // onPressOut={() => setIsPressed(false)}
-    //   style={({ pressed }) => [
-    //     {
-    //       // backgroundColor: pressed ? theme.colors.white : theme.colors.primary,
-    //       // color: pressed ? "#4038FF" : "white",
-    //     },
-    //     {
-    //       borderWidth: borderWidth,
-    //       borderColor: borderColor,
-    //       backgroundColor: backgroundColor,
-    //     },
-    //     styles.btn,
-    //   ]}
-    // >
-    //   <View
-    //     style={{
-    //       flexDirection: "row",
-    //       gap: 52,
-    //     }}
-    //   >
-    //     <View>{icon}</View>
-    //     <View style={{ alignItems: "center" }}>
-    //       <Text style={[{ color: color }, styles.btnText]}>{children}</Text>
-    //     </View>
-    //   </View>
-    // </Pressable>
     <View
       style={[
         {
@@ -62,7 +32,9 @@ const Button = ({
         styles.btn,
       ]}
     >
-      <View style={{}}>{icon}</View>
+      <View style={{}}>
+        <Text>{icon}</Text>
+      </View>
       <Pressable
         onPressIn={onPressIn}
         onPressOut={onPressOut}
@@ -91,7 +63,6 @@ const stylesheet = createStyleSheet((theme) => ({
   },
 
   btn: {
-    // backgroundColor: theme.colors.gray500,
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 15,
@@ -102,23 +73,7 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   btnText: {
     ...theme.typography.bodyLarge.bold,
-    // color: "white",
     lineHeight: 24,
     marginLeft: 44,
   },
-
-  // btn: {
-  //   borderRadius: 16,
-  //   paddingHorizontal: 16,
-  //   paddingVertical: 15,
-  //   //borderWidth: 1,
-  //   marginTop: 16,
-  //   flexDirection: "row",
-  //   marginHorizontal: 24,
-  // },
-  // btnText: {
-  //   ...theme.typography.bodyLarge.bold,
-  //   //lineHeight: 24,
-  //   paddingHorizontal: 16,
-  // },
 }));

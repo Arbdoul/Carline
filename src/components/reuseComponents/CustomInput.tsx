@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { TextInput } from "react-native-paper";
 import React from "react";
 import { Controller } from "react-hook-form";
 import {
@@ -6,6 +7,7 @@ import {
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const CustomInput = ({
   control,
@@ -14,9 +16,25 @@ const CustomInput = ({
   secureTextEntry,
   placeholderTextColor,
   icon,
+  left,
+  right,
   rules = {},
 }: any) => {
   const { styles, theme } = useStyles(stylesheet);
+
+  const renderIcon = (iconName: any) => {
+    return (
+      <TextInput.Icon
+        icon={iconName}
+        size={24}
+        color={
+          UnistylesRuntime.themeName === "dark"
+            ? theme.colors.gray500
+            : theme.colors.gray900
+        }
+      />
+    );
+  };
   return (
     <View>
       <Controller
@@ -29,27 +47,35 @@ const CustomInput = ({
         }) => (
           <>
             <View
-              style={[
+              style={
                 {
-                  flexDirection: "row",
-                  alignItems: "center",
-                },
-                styles.input,
-              ]}
+                  // borderRadius: 16,
+                }
+              }
             >
-              {icon}
               <TextInput
                 value={value}
                 onChangeText={onChange}
                 placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
                 secureTextEntry={secureTextEntry}
-                style={{
-                  color:
-                    UnistylesRuntime.themeName === "dark"
-                      ? theme.colors.gray50
-                      : theme.colors.gray900,
-                }}
+                mode="outlined"
+                // left={left && renderIcon(left)}
+                left={left && renderIcon(left)}
+                right={right && renderIcon(right)}
+                theme={{ roundness: 16 }}
+                textColor={
+                  UnistylesRuntime.themeName === "dark"
+                    ? theme.colors.gray50
+                    : theme.colors.gray900
+                }
+                outlineColor={theme.colors.gray800}
+                style={[
+                  {
+                    color: theme.colors.gray50,
+                  },
+                  styles.input,
+                ]}
               />
             </View>
             {error && (
@@ -73,7 +99,7 @@ const stylesheet = createStyleSheet((theme) => ({
         ? theme.colors.gray800
         : theme.colors.gray50,
     borderRadius: 16,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
 
     marginTop: 16,
   },

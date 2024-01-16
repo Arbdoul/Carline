@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet, Text, View } from "react-native";
@@ -10,22 +10,23 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import "./src/theme";
 import { useLoadSelectedTheme } from "./src/core";
-import SplashScreen from "react-native-splash-screen";
+import { PaperProvider } from "react-native-paper";
+import { paperTheme } from "./src/theme";
+import { storage } from "./src/core";
 
 export default function App() {
   useLoadSelectedTheme();
 
-  useEffect(() => {
-    if (Platform.OS === "android") SplashScreen.hide();
-  }, []);
   return (
-    <SafeAreaProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <BottomSheetModalProvider>
-          <RootNavigator />
-        </BottomSheetModalProvider>
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+    <PaperProvider theme={paperTheme}>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <RootNavigator />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+    </PaperProvider>
   );
 }
 
