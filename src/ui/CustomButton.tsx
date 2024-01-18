@@ -1,38 +1,42 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
-import { theme } from "../theme";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { Button, TextInput } from "react-native-paper";
+import { IconBrandGoogle } from "tabler-icons-react-native";
 
-const CustomButton = ({ children }: any) => {
+const CustomButton = ({ children, onPress, left }: any) => {
+  const { styles, theme } = useStyles(stylesheet);
   return (
-    <View style={styles.buttonContainer}>
-      <Pressable style={styles.finishButton}>
-        <Text style={styles.buttonText}>{children}</Text>
-      </Pressable>
-    </View>
+    <Pressable>
+      <Button
+        mode="contained"
+        onPress={onPress}
+        theme={{ roundness: 4 }}
+        contentStyle={{ paddingVertical: 8 }}
+        labelStyle={{ ...theme.typography.bodyLarge.bold }}
+      >
+        {children}
+      </Button>
+    </Pressable>
   );
 };
 
 export default CustomButton;
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   buttonContainer: {
     marginBottom: 16,
   },
-  finishButton: {
-    width: "90%",
-    height: 65,
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 24,
-    marginVertical: 16,
-    padding: 16,
-    borderRadius: 16,
-    borderWidth: 1,
-    gap: 10,
+
+  btn: {
     backgroundColor: theme.colors.primary,
+    borderRadius: 16,
+    paddingVertical: 15,
+    alignItems: "center",
   },
-  buttonText: {
+  btnText: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.secondary50,
+    color: "white",
+    lineHeight: 24,
   },
-});
+}));

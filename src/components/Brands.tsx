@@ -5,13 +5,21 @@ import {
   FlatList,
   Image,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
-import React from "react";
-import { createStyleSheet, theme, useStyles } from "../theme";
+import React, { useState } from "react";
+import {
+  UnistylesRuntime,
+  createStyleSheet,
+  useStyles,
+} from "react-native-unistyles";
 import { ImageSourcePropType } from "react-native";
+import { FlatGrid, SimpleGrid } from "react-native-super-grid";
 
 const Brands = () => {
+  const { width } = useWindowDimensions();
   const { styles, theme } = useStyles(stylesheet);
+  const [selectedBrand, setSelectedBrand] = useState<number | null>(null);
   const brands = [
     {
       id: 1,
@@ -53,23 +61,42 @@ const Brands = () => {
       icon: require("../../assets/images/audi.png") as ImageSourcePropType,
       description: "Audi",
     },
+    {
+      id: 9,
+      icon: require("../../assets/images/ferari.png") as ImageSourcePropType,
+      description: "Ferari",
+    },
+    {
+      id: 10,
+      icon: require("../../assets/images/audi.png") as ImageSourcePropType,
+      description: "Audi",
+    },
   ];
-  const half = Math.ceil(brands.length / 2);
-  const brandColumns = [brands.slice(0, half), brands.slice(half)];
 
   return (
-    <View style={styles.brandContainer}>
-      {brandColumns.map((column, index) => (
-        <Pressable key={index} style={styles.column}>
-          {column.map((item) => (
-            <View key={item.id} style={styles.brandItem}>
-              <Image source={item.icon} />
-              <Text>{item.description}</Text>
-            </View>
-          ))}
-        </Pressable>
-      ))}
-    </View>
+    <SimpleGrid
+      listKey={"brands"}
+      data={brands}
+      spacing={16}
+      renderItem={({ item }) => (
+        <View
+          style={{
+            borderColor:
+              UnistylesRuntime.themeName === "dark"
+                ? theme.colors.gray800
+                : theme.colors.gray300,
+            borderWidth: 1,
+            borderRadius: 16,
+            alignItems: "center",
+            paddingVertical: 16,
+            gap: 12,
+          }}
+        >
+          <Image source={item.icon} />
+          <Text style={styles.description}>{item.description}</Text>
+        </View>
+      )}
+    />
   );
 };
 
@@ -77,8 +104,8 @@ export default Brands;
 
 const stylesheet = createStyleSheet((theme) => ({
   brandContainer: {
-    flex: 1,
-    flexDirection: "row",
+    // flex: 1,
+    //   flexDirection: "row",
   },
   column: {
     width: "50%",
@@ -90,11 +117,24 @@ const stylesheet = createStyleSheet((theme) => ({
     height: 104,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: theme.colors.primary,
     padding: 16,
     marginBottom: 10,
     marginHorizontal: 24,
     marginVertical: 16,
     gap: 12,
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+  selectedBrand: {
+    borderColor: theme.colors.primary,
+    borderWidth: 1,
+  },
+  description: {
+    ...theme.typography.bodySmall.bold,
+    color:
+      UnistylesRuntime.themeName === "dark"
+        ? theme.colors.white
+        : theme.colors.gray900,
   },
 }));
