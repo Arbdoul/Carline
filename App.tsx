@@ -13,20 +13,24 @@ import { useLoadSelectedTheme } from "./src/core";
 import { PaperProvider } from "react-native-paper";
 import { paperTheme } from "./src/theme";
 import { storage } from "./src/core";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./src/graphql/apolloClient";
 
 export default function App() {
   useLoadSelectedTheme();
 
   return (
-    <PaperProvider theme={paperTheme}>
-      <SafeAreaProvider>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <BottomSheetModalProvider>
-            <RootNavigator />
-          </BottomSheetModalProvider>
-        </GestureHandlerRootView>
-      </SafeAreaProvider>
-    </PaperProvider>
+    <ApolloProvider client={client}>
+      <PaperProvider theme={paperTheme}>
+        <SafeAreaProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <BottomSheetModalProvider>
+              <RootNavigator />
+            </BottomSheetModalProvider>
+          </GestureHandlerRootView>
+        </SafeAreaProvider>
+      </PaperProvider>
+    </ApolloProvider>
   );
 }
 

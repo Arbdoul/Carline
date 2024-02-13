@@ -20,7 +20,7 @@ import {
 } from "tabler-icons-react-native";
 import CustomButton from "../../ui/CustomButton";
 import { Screen } from "../screen";
-import Button from "./Button";
+//import Button from "./Button";
 import { useNavigation } from "@react-navigation/native";
 import Buttons from "./Button";
 

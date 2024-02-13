@@ -1,38 +1,26 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Pressable,
-} from "react-native";
-import { TextInput } from "react-native-paper";
+import { useForm } from "react-hook-form";
+import { Pressable, Text, View } from "react-native";
 
-// import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import Button from "../onbording/Button";
-import CustomInput from "../reuseComponents/CustomInput";
+import { AntDesign } from "@expo/vector-icons";
 import {
   UnistylesRuntime,
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
-import { Screen } from "../screen";
-// import {
-//   IconBrandApple,
-//   IconBrandGoogle,
-//   IconLock,
-//   IconMail,
-// } from "tabler-icons-react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { useLoginMutation } from "../../graphql/graphql";
 import CustomButton from "../../ui/CustomButton";
-// import Icon from "react-native-ico-social-media";
-const SignIn = ({ navigation }: any) => {
-  //  const navigation = useNavigation<any>();
+import Button from "../onbording/Button";
+import CustomInput from "../reuseComponents/CustomInput";
+import { Screen } from "../screen";
+const SignIn = ({ navigation, email, password }: any) => {
   const { styles, theme } = useStyles(stylesheet);
   const [isSignInPressed, setIsSignPressed] = useState(0);
   const [isGooglePressed, setIsGooglePressed] = useState(0);
   const [isApplePressed, setIsApplePressed] = useState(0);
+
+  const [loginMutation] = useLoginMutation();
+
   const {
     control,
     handleSubmit,
@@ -40,10 +28,40 @@ const SignIn = ({ navigation }: any) => {
   } = useForm();
 
   // console.log(errors);
-  const onSignPressed = (data: any) => {
+  const onSignPressed = async (data: any) => {
     console.log(data);
     navigation.navigate("BrandScreen");
     // Handle form submission
+
+    loginMutation({
+      variables: {
+        data: {
+          email: data?.email,
+          password: data?.password,
+        },
+      },
+      onCompleted: (d) => {
+        console.log("success ohhh");
+      },
+      onError: (e) => {
+        console.log("erorror ", e);
+      },
+    });
+    /*    try {
+      const response = await loginMutation({
+        variables: {
+          data: {
+            email: email,
+            password: password,
+          },
+        },
+      });
+      console.log("Login successful:", response);
+      // Handle successful login,
+    } catch (error) {
+      console.error("Login error:", error);
+      // Handle login error, display error message to the user
+    } */
   };
   const handleSignup = (data: any) => {
     //console.log(data);
