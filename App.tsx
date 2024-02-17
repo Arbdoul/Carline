@@ -1,20 +1,17 @@
+import React from "react";
+import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
-import React, { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, Text, View } from "react-native";
 // import { UnistylesTheme } from "react-native-unistyles";
-import HomeScreen from "./src/screens/BrandScreen";
-import { RootNavigator } from "./src/navigation/RootNavigation";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import "./src/theme";
-import { useLoadSelectedTheme } from "./src/core";
-import { PaperProvider } from "react-native-paper";
-import { paperTheme } from "./src/theme";
-import { storage } from "./src/core";
 import { ApolloProvider } from "@apollo/client";
-import { client } from "./src/graphql/apolloClient";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useLoadSelectedTheme } from "./src/core";
+import { client } from "./src/graphql/queries/apollo-client";
+import { RootNavigator } from "./src/navigation/RootNavigation";
+import "./src/theme";
+import { paperTheme } from "./src/theme";
 
 export default function App() {
   useLoadSelectedTheme();

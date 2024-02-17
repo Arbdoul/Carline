@@ -1,149 +1,128 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useCachedResources } from "../theme/CatchedResources";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  DefaultTheme,
-  NavigationContainer,
-  useNavigation,
-} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/BrandScreen";
-import Home from "../components/Home/Home";
-import Favorite from "../components/Home/Favorite";
-import Message from "../components/Home/Message";
-import Profile from "../components/Home/Profile";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import BrandScreen from "../screens/BrandScreen";
-import {
-  IconSmartHome,
-  IconHeart,
-  IconShareOff,
-  IconDotsVertical,
-  IconArrowNarrowLeft,
-} from "tabler-icons-react-native";
-import LocationScreen from "../components/Home/LocationScreen";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
 import { UnistylesRuntime, useStyles } from "react-native-unistyles";
 import AllCarRecommendation from "../components/Home/AllCarRecommendation";
-import CarDetailScreen from "../screens/CarDetailScreen";
-import PaymentScreen from "../screens/PaymentScreen";
-import InspectionAndDeliveryScreen from "../screens/InspectionAndDeliveryScreen";
-import AddressScreen from "../screens/AddressScreen";
-import PurchaseScreen from "../screens/PurchaseScreen";
-import PaymentMethodScreen from "../screens/PaymentMethodScreen";
-import ReceiptPayment from "../screens/ReceiptPaymentScreen";
-import ReceiptPaymentScreen from "../screens/ReceiptPaymentScreen";
-import TrackingScreen from "../screens/TrackingScreen";
+import LocationScreen from "../components/Home/LocationScreen";
 import Appointment from "../components/profile/Appointment";
+import LinkAccount from "../components/profile/LinkAccount";
+import Settings from "../components/profile/Settings";
 import TestDrive from "../components/profile/TestDrive";
 import Vouchers from "../components/profile/Vouchers";
-import Settings from "../components/profile/Settings";
-import LinkAccount from "../components/profile/LinkAccount";
-import { useSelectedTheme } from "../core";
-import Onbording from "../components/onbording/Onbording";
-import OnbordingOne from "../components/onbording/OnbordingOne";
-import OnbordingTwo from "../components/onbording/OnbordingTwo";
-import Slides from "../components/onbording/Slides";
-import SignIn from "../components/auth/SignIn";
-import SignUp from "../components/auth/SignUp";
-import ResetPassword from "../components/auth/ResetPassword";
-import VerificationCode from "../components/auth/VerificationCode";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { storage } from "../core";
+import { storage, useSelectedTheme } from "../core";
+import AddressScreen from "../screens/AddressScreen";
+import BrandScreen from "../screens/BrandScreen";
+import CarDetailScreen from "../screens/CarDetailScreen";
+import ResetPassword from "../screens/auth/ResetPassword";
+import SignIn from "../screens/auth/SignIn";
+import SignUp from "../screens/auth/SignUp";
+import VerificationCode from "../screens/auth/VerificationCode";
+import OnbordingOne from "../screens/onbording/OnbordingOne";
+import OnbordingTwo from "../screens/onbording/OnbordingTwo";
+import Slides from "../screens/onbording/Slides";
+import InspectionAndDeliveryScreen from "../screens/purchase/InspectionAndDeliveryScreen";
+import PaymentMethodScreen from "../screens/purchase/PaymentMethodScreen";
+import PaymentScreen from "../screens/purchase/PaymentScreen";
+import PurchaseScreen from "../screens/purchase/PurchaseScreen";
+import ReceiptPaymentScreen from "../screens/purchase/ReceiptPaymentScreen";
+import TrackingScreen from "../screens/purchase/TrackingScreen";
+import { useCachedResources } from "../theme/CatchedResources";
+import TabNavigation from "./TabNavigation";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function TabNavigator() {
-  const { styles, theme } = useStyles(stylesheet);
+// function TabNavigator() {
+//   const { styles, theme } = useStyles(stylesheet);
 
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: theme.colors.background,
-          paddingTop: 8,
-          height: 64,
-          //   paddingBottom: 8,
-        },
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarLabelStyle: {
-          ...theme.typography.bodySmall.bold,
-          marginBottom: 6,
-          // marginTop: 8,
-        },
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            // <Entypo name="home" size={size} color={color} />
-            <IconSmartHome size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Favorite"
-        component={Favorite}
-        options={{
-          // headerShown: false,
-          // headerTitle: "Favorites",
-          headerTitleAlign: "center",
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: theme.colors.background,
-          },
-          headerTitleStyle: {
-            ...theme.typography.bodyXLarge.bold,
-          },
+//   return (
+//     <Tab.Navigator
+//       screenOptions={{
+//         tabBarStyle: {
+//           backgroundColor: theme.colors.background,
+//           paddingTop: 8,
+//           height: 64,
+//           //   paddingBottom: 8,
+//         },
+//         tabBarActiveTintColor: theme.colors.primary,
+//         tabBarLabelStyle: {
+//           ...theme.typography.bodySmall.bold,
+//           marginBottom: 6,
+//           // marginTop: 8,
+//         },
+//       }}
+//     >
+//       <Tab.Screen
+//         name="Home"
+//         component={Home}
+//         options={{
+//           headerShown: false,
+//           tabBarIcon: ({ color, size }) => (
+//             // <Entypo name="home" size={size} color={color} />
+//             <IconSmartHome size={size} color={color} />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Favorite"
+//         component={Favorite}
+//         options={{
+//           // headerShown: false,
+//           // headerTitle: "Favorites",
+//           headerTitleAlign: "center",
+//           headerShadowVisible: false,
+//           headerStyle: {
+//             backgroundColor: theme.colors.background,
+//           },
+//           headerTitleStyle: {
+//             ...theme.typography.bodyXLarge.bold,
+//           },
 
-          tabBarIcon: ({ color, size }) => (
-            <IconHeart size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Message"
-        component={Message}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="message-reply-text-outline"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          // headerShown: false,
-          // headerTitle: "Favorites",
-          headerTitleAlign: "center",
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: theme.colors.primary,
-          },
-          headerTitleStyle: {
-            ...theme.typography.bodyXLarge.bold,
-            color: "white",
-          },
+//           tabBarIcon: ({ color, size }) => (
+//             <IconHeart size={size} color={color} />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Message"
+//         component={Message}
+//         options={{
+//           headerShown: false,
+//           tabBarIcon: ({ color, size }) => (
+//             <MaterialCommunityIcons
+//               name="message-reply-text-outline"
+//               size={size}
+//               color={color}
+//             />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Profile"
+//         component={Profile}
+//         options={{
+//           // headerShown: false,
+//           // headerTitle: "Favorites",
+//           headerTitleAlign: "center",
+//           headerShadowVisible: false,
+//           headerStyle: {
+//             backgroundColor: theme.colors.primary,
+//           },
+//           headerTitleStyle: {
+//             ...theme.typography.bodyXLarge.bold,
+//             color: "white",
+//           },
 
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" size={size} color={color} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
+//           tabBarIcon: ({ color, size }) => (
+//             <Ionicons name="person-outline" size={size} color={color} />
+//           ),
+//         }}
+//       />
+//     </Tab.Navigator>
+//   );
+// }
 
 const RootNavigation = () => {
   const isLoadingComplete = useCachedResources();
@@ -268,7 +247,7 @@ const RootNavigation = () => {
       />
       <Stack.Screen
         name="HomeScreen"
-        component={TabNavigator}
+        component={TabNavigation}
         options={{ headerShown: false }}
       />
       <Stack.Screen

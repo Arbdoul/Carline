@@ -1,6 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import {
   FlatList,
   Image,
@@ -14,9 +15,17 @@ import {
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
-import { IconEngine, IconManualGearbox } from "tabler-icons-react-native";
-import { Screen } from "../screen";
-// import CarDetailScreen from "../../screens/carDetailsScreen/carDetailScreen";
+import {
+  IconArrowNarrowLeft,
+  IconDotsVertical,
+  IconEngine,
+  IconHeart,
+  IconManualGearbox,
+  IconSortDescending,
+} from "tabler-icons-react-native";
+
+import CustomBottomSheet from "../../components/bottomSheet/CustomBottomSheet";
+import { Screen } from "../../components/screen";
 
 interface CarItem {
   id: number;
@@ -29,10 +38,18 @@ interface CarItem {
   type: string;
   hp: string;
 }
-
-const AllCarRecommendation = () => {
+const Favorite = () => {
   const { styles, theme } = useStyles(stylesheet);
-  const navigation = useNavigation<any>();
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const [backgroundColor, setBackgroundColor] = useState(theme.colors.white);
+
+  const handlePresentModal = () => {
+    bottomSheetRef.current?.present();
+    setBackgroundColor(theme.colors.gray900);
+  };
+  const handleClose = () => bottomSheetRef.current?.close();
+  const navigation = useNavigation();
 
   const items: CarItem[] = [
     {
@@ -125,90 +142,137 @@ const AllCarRecommendation = () => {
     },
   ];
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Favorites",
+      headerRight: () => (
+        <IconDotsVertical size={24} style={{ marginRight: 20 }} />
+      ),
+
+      headerLeft: () => (
+        <Pressable onPress={navigation.goBack}>
+          <IconArrowNarrowLeft size={24} style={{ marginLeft: 24 }} />
+        </Pressable>
+      ),
+    });
+  }, []);
+
   const renderItem = ({ item }: { item: CarItem }) => (
-    <Pressable
-      onPress={() =>
-        navigation.navigate("CarDetailScreen", { title: item.description })
-      }
-      style={{
-        padding: 16,
-        backgroundColor:
-          UnistylesRuntime.themeName === "dark"
-            ? theme.colors.gray800
-            : theme.colors.gray50,
-        gap: 14,
-        marginTop: 24,
-        borderRadius: 16,
-      }}
-    >
-      <View
+    <>
+      <Pressable
+        // onPress={() =>
+        //   // navigation.navigate("CarDetailScreen", { title: item.description })
+        // }
         style={{
-          flexDirection: "row",
-          alignItems: "center",
+          padding: 16,
+          backgroundColor:
+            UnistylesRuntime?.themeName === "dark"
+              ? theme.colors.gray800
+              : theme.colors.gray50,
           gap: 14,
+          marginTop: 24,
+          borderRadius: 16,
         }}
       >
-        <Image source={item.image} />
-        <View style={{ flex: 1, gap: 8 }}>
-          <Text style={styles.description}>{item.description}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{
+              borderRadius: 6,
+              padding: 8,
+              backgroundColor: theme.colors.primary,
+            }}
           >
-            <Image source={item.icon} />
-            <View style={styles.star}>
-              <FontAwesome name="star" size={14} color={theme.colors.warning} />
+            <Text
+              style={{
+                ...theme.typography.bodyXSmall.bold,
+                color: theme.colors.white,
+              }}
+            >
+              Free test drive
+            </Text>
+          </View>
+          <IconHeart size={24} color={theme.colors.errorDark} />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 14,
+          }}
+        >
+          <Image source={item.image} />
+          <View style={{ flex: 1, gap: 8 }}>
+            <Text style={styles.description}>{item.description}</Text>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Image source={item.icon} />
+              <View style={styles.star}>
+                <FontAwesome
+                  name="star"
+                  size={14}
+                  color={theme.colors.warning}
+                />
+                <Text
+                  style={{
+                    ...theme.typography.bodySmall.medium,
+                    color: theme.colors.gray500,
+                  }}
+                >
+                  4.5
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.titleContainer,
+            { height: 1, backgroundColor: theme.colors.gray200 },
+          ]}
+        />
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flexDirection: "row", gap: 12 }}>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <IconEngine color={theme.colors.gray500} size={16} />
               <Text
                 style={{
                   ...theme.typography.bodySmall.medium,
                   color: theme.colors.gray500,
                 }}
               >
-                4.5
+                470 hp
+              </Text>
+            </View>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <IconManualGearbox color={theme.colors.gray500} size={16} />
+              <Text
+                style={{
+                  ...theme.typography.bodySmall.medium,
+                  color: theme.colors.gray500,
+                }}
+              >
+                Automatic
               </Text>
             </View>
           </View>
+          <Text style={styles.price}>{item.price}</Text>
         </View>
-      </View>
-      <View
-        style={{
-          height: 1,
-          backgroundColor:
-            UnistylesRuntime.themeName === "dark"
-              ? theme.colors.gray700
-              : theme.colors.gray200,
-        }}
-      />
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ flexDirection: "row", gap: 12 }}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-            <IconEngine color={theme.colors.gray500} size={16} />
-            <Text
-              style={{
-                ...theme.typography.bodySmall.medium,
-                color: theme.colors.gray500,
-              }}
-            >
-              470 hp
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-            <IconManualGearbox color={theme.colors.gray500} size={16} />
-            <Text
-              style={{
-                ...theme.typography.bodySmall.medium,
-                color: theme.colors.gray500,
-              }}
-            >
-              Automatic
-            </Text>
-          </View>
-        </View>
-        <Text style={styles.price}>{item.price}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </>
   );
-
   return (
+    // <></>
     <Screen
       backgroundColor={theme.colors.background}
       statusBarProps={{
@@ -223,6 +287,39 @@ const AllCarRecommendation = () => {
         flex: 1,
       }}
     >
+      <View
+        style={{
+          marginTop: 24,
+          marginHorizontal: 24,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text
+          style={{
+            ...theme.typography.bodyXLarge.bold,
+            color:
+              UnistylesRuntime?.themeName === "dark"
+                ? theme.colors.gray50
+                : theme.colors.gray900,
+          }}
+        >
+          10 cars
+        </Text>
+        <View style={{ flexDirection: "row", gap: 8 }}>
+          <Text
+            style={{
+              ...theme.typography.bodyXLarge.bold,
+              color: theme.colors.gray500,
+            }}
+          >
+            Sort
+          </Text>
+          <Pressable onPress={handlePresentModal}>
+            <IconSortDescending size={24} color={theme.colors.gray500} />
+          </Pressable>
+        </View>
+      </View>
       <FlatList
         data={items}
         style={{ paddingHorizontal: 24 }}
@@ -230,13 +327,19 @@ const AllCarRecommendation = () => {
         renderItem={renderItem}
         ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
       />
+
+      <CustomBottomSheet ref={bottomSheetRef} handleClose={handleClose} />
     </Screen>
   );
 };
 
-export default AllCarRecommendation;
+export default Favorite;
 
 const stylesheet = createStyleSheet((theme) => ({
+  rootContainer: {
+    flex: 1,
+    //  backgroundColor: {},
+  },
   container: {
     flex: 1,
     marginTop: 16,
@@ -247,10 +350,10 @@ const stylesheet = createStyleSheet((theme) => ({
     marginRight: 24,
     padding: 16,
     borderColor:
-      UnistylesRuntime.themeName === "dark"
-        ? theme.colors.gray700
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
         : theme.colors.gray200,
-    // backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.white,
   },
   ratingContainer: {
     flex: 1,
@@ -260,7 +363,7 @@ const stylesheet = createStyleSheet((theme) => ({
   description: {
     ...theme.typography.bodyXLarge.bold,
     color:
-      UnistylesRuntime.themeName === "dark"
+      UnistylesRuntime?.themeName === "dark"
         ? theme.colors.gray50
         : theme.colors.gray500,
     // marginRight: 15,
@@ -272,7 +375,10 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   price: {
     ...theme.typography.bodyLarge.bold,
-    color: theme.colors.primary,
+    color:
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray50
+        : theme.colors.primary,
     marginLeft: 53,
   },
   imageContainer: {
@@ -283,8 +389,8 @@ const stylesheet = createStyleSheet((theme) => ({
   titleContainer: {
     borderTopWidth: 1,
     borderColor:
-      UnistylesRuntime.themeName === "dark"
-        ? theme.colors.gray700
+      UnistylesRuntime?.themeName === "dark"
+        ? theme.colors.gray800
         : theme.colors.gray200,
   },
   title: {
@@ -301,8 +407,4 @@ const stylesheet = createStyleSheet((theme) => ({
     flexDirection: "row",
     gap: 4,
   },
-  //   icon: {
-  //     justifyContent: "center",
-  //     alignItems: "center",
-  //   },
 }));

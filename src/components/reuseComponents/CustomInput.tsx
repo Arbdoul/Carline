@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
 import React from "react";
 import { Controller } from "react-hook-form";
+import { Text, View } from "react-native";
+import { TextInput } from "react-native-paper";
 import {
   UnistylesRuntime,
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const CustomInput = ({
   control,
